@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20F5577C153D7CEF005BD460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577B153D7CEF005BD460 /* UIKit.framework */; };
+		20F5577E153D7CEF005BD460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577D153D7CEF005BD460 /* Foundation.framework */; };
+		20F55780153D7CEF005BD460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577F153D7CEF005BD460 /* CoreGraphics.framework */; };
+		20F55786153D7CEF005BD460 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20F55784153D7CEF005BD460 /* InfoPlist.strings */; };
+		20F55788153D7CEF005BD460 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F55787153D7CEF005BD460 /* main.m */; };
+		20F5578C153D7CEF005BD460 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F5578B153D7CEF005BD460 /* AppDelegate.m */; };
+		20F5578F153D7CEF005BD460 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F5578E153D7CEF005BD460 /* ViewController.m */; };
+		20F557A3153D7DAC005BD460 /* AUPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F5579E153D7D74005BD460 /* AUPageScrollView.m */; };
+		20F557A4153D7DAC005BD460 /* AUPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557A0153D7D74005BD460 /* AUPageView.m */; };
+		20F557A5153D7DAC005BD460 /* AUReusablePageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557A2153D7D74005BD460 /* AUReusablePageScrollView.m */; };
+		20F557A8153D7FCB005BD460 /* ExamplePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557A7153D7FCA005BD460 /* ExamplePageView.m */; };
+		20F557AB153D81BF005BD460 /* ExamplePageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557AA153D81BE005BD460 /* ExamplePageScrollView.m */; };
+		20F557B1153D82A2005BD460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577D153D7CEF005BD460 /* Foundation.framework */; };
+		20F557B7153D82A2005BD460 /* AUPageScrollViewLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557B6153D82A2005BD460 /* AUPageScrollViewLib.m */; };
+		20F557BB153D82AF005BD460 /* AUPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F5579E153D7D74005BD460 /* AUPageScrollView.m */; };
+		20F557BC153D82AF005BD460 /* AUReusablePageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557A2153D7D74005BD460 /* AUReusablePageScrollView.m */; };
+		20F557BD153D82AF005BD460 /* AUPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F557A0153D7D74005BD460 /* AUPageView.m */; };
+		20F557BE153D82BA005BD460 /* AUPageScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F5579D153D7D74005BD460 /* AUPageScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20F557BF153D82BA005BD460 /* AUReusablePageScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F557A1153D7D74005BD460 /* AUReusablePageScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20F557C0153D82BA005BD460 /* AUPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F5579F153D7D74005BD460 /* AUPageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20F557C1153D82E3005BD460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577B153D7CEF005BD460 /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		20F55777153D7CEF005BD460 /* AUPageScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AUPageScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F5577B153D7CEF005BD460 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		20F5577D153D7CEF005BD460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		20F5577F153D7CEF005BD460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		20F55783153D7CEF005BD460 /* AUPageScrollView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AUPageScrollView-Info.plist"; sourceTree = "<group>"; };
+		20F55785153D7CEF005BD460 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		20F55787153D7CEF005BD460 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20F55789153D7CEF005BD460 /* AUPageScrollView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AUPageScrollView-Prefix.pch"; sourceTree = "<group>"; };
+		20F5578A153D7CEF005BD460 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		20F5578B153D7CEF005BD460 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		20F5578D153D7CEF005BD460 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		20F5578E153D7CEF005BD460 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		20F5579D153D7D74005BD460 /* AUPageScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AUPageScrollView.h; path = Classes/AUPageScrollView.h; sourceTree = SOURCE_ROOT; };
+		20F5579E153D7D74005BD460 /* AUPageScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AUPageScrollView.m; path = Classes/AUPageScrollView.m; sourceTree = SOURCE_ROOT; };
+		20F5579F153D7D74005BD460 /* AUPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AUPageView.h; path = Classes/AUPageView.h; sourceTree = SOURCE_ROOT; };
+		20F557A0153D7D74005BD460 /* AUPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AUPageView.m; path = Classes/AUPageView.m; sourceTree = SOURCE_ROOT; };
+		20F557A1153D7D74005BD460 /* AUReusablePageScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AUReusablePageScrollView.h; path = Classes/AUReusablePageScrollView.h; sourceTree = SOURCE_ROOT; };
+		20F557A2153D7D74005BD460 /* AUReusablePageScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AUReusablePageScrollView.m; path = Classes/AUReusablePageScrollView.m; sourceTree = SOURCE_ROOT; };
+		20F557A6153D7FCA005BD460 /* ExamplePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplePageView.h; sourceTree = "<group>"; };
+		20F557A7153D7FCA005BD460 /* ExamplePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplePageView.m; sourceTree = "<group>"; };
+		20F557A9153D81BE005BD460 /* ExamplePageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplePageScrollView.h; sourceTree = "<group>"; };
+		20F557AA153D81BE005BD460 /* ExamplePageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplePageScrollView.m; sourceTree = "<group>"; };
+		20F557B0153D82A2005BD460 /* libAUPageScrollViewLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAUPageScrollViewLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F557B4153D82A2005BD460 /* AUPageScrollViewLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AUPageScrollViewLib-Prefix.pch"; sourceTree = "<group>"; };
+		20F557B5153D82A2005BD460 /* AUPageScrollViewLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUPageScrollViewLib.h; sourceTree = "<group>"; };
+		20F557B6153D82A2005BD460 /* AUPageScrollViewLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AUPageScrollViewLib.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20F55774153D7CEF005BD460 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F5577C153D7CEF005BD460 /* UIKit.framework in Frameworks */,
+				20F5577E153D7CEF005BD460 /* Foundation.framework in Frameworks */,
+				20F55780153D7CEF005BD460 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20F557AD153D82A2005BD460 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F557C1153D82E3005BD460 /* UIKit.framework in Frameworks */,
+				20F557B1153D82A2005BD460 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20F5576C153D7CEF005BD460 = {
+			isa = PBXGroup;
+			children = (
+				20F55781153D7CEF005BD460 /* Example */,
+				20F5579C153D7D2C005BD460 /* Classes */,
+				20F557B2153D82A2005BD460 /* AUPageScrollViewLib */,
+				20F5577A153D7CEF005BD460 /* Frameworks */,
+				20F55778153D7CEF005BD460 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20F55778153D7CEF005BD460 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20F55777153D7CEF005BD460 /* AUPageScrollView.app */,
+				20F557B0153D82A2005BD460 /* libAUPageScrollViewLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20F5577A153D7CEF005BD460 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20F5577B153D7CEF005BD460 /* UIKit.framework */,
+				20F5577D153D7CEF005BD460 /* Foundation.framework */,
+				20F5577F153D7CEF005BD460 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20F55781153D7CEF005BD460 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				20F5578A153D7CEF005BD460 /* AppDelegate.h */,
+				20F5578B153D7CEF005BD460 /* AppDelegate.m */,
+				20F5578D153D7CEF005BD460 /* ViewController.h */,
+				20F5578E153D7CEF005BD460 /* ViewController.m */,
+				20F557A6153D7FCA005BD460 /* ExamplePageView.h */,
+				20F557A7153D7FCA005BD460 /* ExamplePageView.m */,
+				20F557A9153D81BE005BD460 /* ExamplePageScrollView.h */,
+				20F557AA153D81BE005BD460 /* ExamplePageScrollView.m */,
+				20F55782153D7CEF005BD460 /* Supporting Files */,
+			);
+			name = Example;
+			path = AUPageScrollView;
+			sourceTree = "<group>";
+		};
+		20F55782153D7CEF005BD460 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20F55783153D7CEF005BD460 /* AUPageScrollView-Info.plist */,
+				20F55784153D7CEF005BD460 /* InfoPlist.strings */,
+				20F55787153D7CEF005BD460 /* main.m */,
+				20F55789153D7CEF005BD460 /* AUPageScrollView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20F5579C153D7D2C005BD460 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				20F5579D153D7D74005BD460 /* AUPageScrollView.h */,
+				20F5579E153D7D74005BD460 /* AUPageScrollView.m */,
+				20F557A1153D7D74005BD460 /* AUReusablePageScrollView.h */,
+				20F557A2153D7D74005BD460 /* AUReusablePageScrollView.m */,
+				20F5579F153D7D74005BD460 /* AUPageView.h */,
+				20F557A0153D7D74005BD460 /* AUPageView.m */,
+			);
+			name = Classes;
+			path = AUPageScrollView;
+			sourceTree = "<group>";
+		};
+		20F557B2153D82A2005BD460 /* AUPageScrollViewLib */ = {
+			isa = PBXGroup;
+			children = (
+				20F557B5153D82A2005BD460 /* AUPageScrollViewLib.h */,
+				20F557B6153D82A2005BD460 /* AUPageScrollViewLib.m */,
+				20F557B3153D82A2005BD460 /* Supporting Files */,
+			);
+			path = AUPageScrollViewLib;
+			sourceTree = "<group>";
+		};
+		20F557B3153D82A2005BD460 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20F557B4153D82A2005BD460 /* AUPageScrollViewLib-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		20F557AE153D82A2005BD460 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F557BE153D82BA005BD460 /* AUPageScrollView.h in Headers */,
+				20F557BF153D82BA005BD460 /* AUReusablePageScrollView.h in Headers */,
+				20F557C0153D82BA005BD460 /* AUPageView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		20F55776153D7CEF005BD460 /* AUPageScrollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20F55795153D7CEF005BD460 /* Build configuration list for PBXNativeTarget "AUPageScrollView" */;
+			buildPhases = (
+				20F55773153D7CEF005BD460 /* Sources */,
+				20F55774153D7CEF005BD460 /* Frameworks */,
+				20F55775153D7CEF005BD460 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AUPageScrollView;
+			productName = AUPageScrollView;
+			productReference = 20F55777153D7CEF005BD460 /* AUPageScrollView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		20F557AF153D82A2005BD460 /* AUPageScrollViewLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20F557B8153D82A2005BD460 /* Build configuration list for PBXNativeTarget "AUPageScrollViewLib" */;
+			buildPhases = (
+				20F557AC153D82A2005BD460 /* Sources */,
+				20F557AD153D82A2005BD460 /* Frameworks */,
+				20F557AE153D82A2005BD460 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AUPageScrollViewLib;
+			productName = AUPageScrollViewLib;
+			productReference = 20F557B0153D82A2005BD460 /* libAUPageScrollViewLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20F5576E153D7CEF005BD460 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 20F55771153D7CEF005BD460 /* Build configuration list for PBXProject "AUPageScrollView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 20F5576C153D7CEF005BD460;
+			productRefGroup = 20F55778153D7CEF005BD460 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20F55776153D7CEF005BD460 /* AUPageScrollView */,
+				20F557AF153D82A2005BD460 /* AUPageScrollViewLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20F55775153D7CEF005BD460 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F55786153D7CEF005BD460 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20F55773153D7CEF005BD460 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F55788153D7CEF005BD460 /* main.m in Sources */,
+				20F5578C153D7CEF005BD460 /* AppDelegate.m in Sources */,
+				20F5578F153D7CEF005BD460 /* ViewController.m in Sources */,
+				20F557A3153D7DAC005BD460 /* AUPageScrollView.m in Sources */,
+				20F557A4153D7DAC005BD460 /* AUPageView.m in Sources */,
+				20F557A5153D7DAC005BD460 /* AUReusablePageScrollView.m in Sources */,
+				20F557A8153D7FCB005BD460 /* ExamplePageView.m in Sources */,
+				20F557AB153D81BF005BD460 /* ExamplePageScrollView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20F557AC153D82A2005BD460 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F557BB153D82AF005BD460 /* AUPageScrollView.m in Sources */,
+				20F557BC153D82AF005BD460 /* AUReusablePageScrollView.m in Sources */,
+				20F557BD153D82AF005BD460 /* AUPageView.m in Sources */,
+				20F557B7153D82A2005BD460 /* AUPageScrollViewLib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		20F55784153D7CEF005BD460 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F55785153D7CEF005BD460 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20F55793153D7CEF005BD460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		20F55794153D7CEF005BD460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20F55796153D7CEF005BD460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AUPageScrollView/AUPageScrollView-Prefix.pch";
+				INFOPLIST_FILE = "AUPageScrollView/AUPageScrollView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		20F55797153D7CEF005BD460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AUPageScrollView/AUPageScrollView-Prefix.pch";
+				INFOPLIST_FILE = "AUPageScrollView/AUPageScrollView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		20F557B9153D82A2005BD460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/AUPageScrollViewLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AUPageScrollViewLib/AUPageScrollViewLib-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		20F557BA153D82A2005BD460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/AUPageScrollViewLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AUPageScrollViewLib/AUPageScrollViewLib-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20F55771153D7CEF005BD460 /* Build configuration list for PBXProject "AUPageScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F55793153D7CEF005BD460 /* Debug */,
+				20F55794153D7CEF005BD460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20F55795153D7CEF005BD460 /* Build configuration list for PBXNativeTarget "AUPageScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F55796153D7CEF005BD460 /* Debug */,
+				20F55797153D7CEF005BD460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20F557B8153D82A2005BD460 /* Build configuration list for PBXNativeTarget "AUPageScrollViewLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F557B9153D82A2005BD460 /* Debug */,
+				20F557BA153D82A2005BD460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20F5576E153D7CEF005BD460 /* Project object */;
+}
