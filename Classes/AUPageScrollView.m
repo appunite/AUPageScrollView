@@ -63,7 +63,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         [_scrollView setBounces: YES];
         [_scrollView setDirectionalLockEnabled: YES];
         [_scrollView setMultipleTouchEnabled:NO];
-        [_scrollView setPagingEnabled:NO];        
+        [_scrollView setPagingEnabled:YES];        
         [_scrollView setDecelerationRate: UIScrollViewDecelerationRateFast];
         [_scrollView setScrollsToTop: NO];
         [_scrollView setAutoresizingMask:
