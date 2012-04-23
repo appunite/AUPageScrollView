@@ -348,6 +348,7 @@
 		20F55796153D7CEF005BD460 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AUPageScrollView/AUPageScrollView-Prefix.pch";
 				INFOPLIST_FILE = "AUPageScrollView/AUPageScrollView-Info.plist";
@@ -360,6 +361,7 @@
 		20F55797153D7CEF005BD460 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AUPageScrollView/AUPageScrollView-Prefix.pch";
 				INFOPLIST_FILE = "AUPageScrollView/AUPageScrollView-Info.plist";
