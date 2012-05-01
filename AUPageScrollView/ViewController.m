@@ -21,6 +21,7 @@
                                                       scrollDirection:AUScrollHorizontalDirection];
     _pageScrollView.delegate = self;
     _pageScrollView.dataSource = self;
+    _pageScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_pageScrollView];
     
     // reload data
@@ -34,6 +35,18 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [_pageScrollView willRotateToInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [_pageScrollView didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [_pageScrollView willAnimateRotationWithDuration:toInterfaceOrientation];
 }
 
 #pragma mark - AUPageScrollViewDataSource

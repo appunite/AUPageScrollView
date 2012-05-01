@@ -150,11 +150,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 	
 	// Load first visible pages
     UIEdgeInsets inset = _loadInset;
-    NSUInteger count = [self visiblePagesCountWithInset:inset];
-    NSUInteger firstVisiblePageIndex = [self firstVisiblePageIndexWithInset:inset];
+    NSRange range = [self visiblePagesRangeWithInset:inset];
     
-    for (NSUInteger i=0; i<count; i++) {
-        [self loadPageAtIndex:i + firstVisiblePageIndex];
+    for (NSUInteger i=0; i<range.length; i++) {
+        [self loadPageAtIndex:i + range.location];
     }
     
     //send delegate method
@@ -164,10 +163,9 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadVisiblePages {
 	// Load first visible pages
-    NSUInteger count = [self visiblePagesCount];
-    NSUInteger firstVisiblePage = [self firstVisiblePageIndex];
+    NSRange range = [self visiblePagesRange];
     
-    for (NSUInteger i=firstVisiblePage; i<count+firstVisiblePage; i++) {
+    for (NSUInteger i=range.location; i<range.length+range.location; i++) {
         if (![self pageAtIndex:i]) {
             [self loadPageAtIndex:i forceLoad:YES];
         }
@@ -371,18 +369,73 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 #pragma mark Handling View Rotations
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willAnimateRotationWithDuration:(NSTimeInterval)duration {
-    [self reloadData];
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    // set rotation flag
+    _rotationInProgress = YES;    
+    _pageIndexBeforeRotation = [self currentPageIndex];
+    
+    // get current page
+    id page = [self pageAtIndex:_pageIndexBeforeRotation];
+
+    // send message
+    if ([page respondsToSelector:@selector(willRotateToInterfaceOrientation:)]) {
+        [page willRotateToInterfaceOrientation:orientation];
+    }
+    
+    // unload invisible pages
+    [self unloadUnnecessaryPages];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+- (void)willAnimateRotationWithDuration:(NSTimeInterval)duration {    
+    // get current page
+    id page = [self pageAtIndex:_pageIndexBeforeRotation];
     
+    // send message
+    if ([page respondsToSelector:@selector(willAnimateRotationWithDuration:)]) {
+        [page willAnimateRotationWithDuration:duration];
+    }
+
+    // set up content offset
+    CGRect frame = [self frameForPageAtIndex:_pageIndexBeforeRotation];
+    _scrollView.contentOffset = frame.origin;
+
+    // get visible pages range
+    NSRange range = [self visiblePagesRangeWithInset:_loadInset];
+    
+    for (NSInteger i=range.location; i<=range.location + range.length - 1; i++) {
+        if (page != [NSNull null]) {
+            // get frame
+            CGRect frame = [self frameForPageAtIndex:i];
+
+            // get current page
+            id page = [self pageAtIndex:i];
+            
+            // update frame, if can
+            if (page != [NSNull null]) {
+                [page setFrame:frame];
+                
+                if ([page isKindOfClass:[UIScrollView class]]) {
+                    [page setContentSize:frame.size];
+                }
+            }
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation {
     
+    // get current page
+    id page = [self pageAtIndex:_pageIndexBeforeRotation];
+    
+    // send message
+    if ([page respondsToSelector:@selector(didRotateFromInterfaceOrientation:)]) {
+        [page didRotateFromInterfaceOrientation:orientation];
+    }
+
+    // clear rotation flag
+    _rotationInProgress = NO;
 }
 
 #pragma mark -
@@ -390,7 +443,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
+    if (_rotationInProgress) return;
+    
     // dont't call if no pages
     if ([_pages count] == 0) return;
     
@@ -574,13 +628,12 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray*) visiblePages {
     // calculate first visible page and visible page count
-    NSInteger firstVisiblePageIndex = [self firstVisiblePageIndex];
-    NSInteger visiblePagesCount = [self visiblePagesCount];
+    NSRange range = [self visiblePagesRange];
     
     // create array
     NSMutableArray* array = [NSMutableArray array];
     
-    for (NSInteger i=firstVisiblePageIndex; i<=visiblePagesCount + firstVisiblePageIndex - 1; i++) {
+    for (NSInteger i=range.location; i<=range.length + range.location - 1; i++) {
         
         // check if page index is in bounds 
         if ([self pageExistAtIndex: i]) {
@@ -596,6 +649,20 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     
     // return array of visible pages
     return array;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSRange)visiblePagesRangeWithInset:(UIEdgeInsets)inset {
+    // calculate first visible page and visible page count
+    NSInteger firstVisiblePageIndex = [self firstVisiblePageIndexWithInset:inset];
+    NSInteger visiblePagesCount = [self visiblePagesCountWithInset:inset];
+    
+    return NSMakeRange(firstVisiblePageIndex, visiblePagesCount);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSRange)visiblePagesRange {
+    return [self visiblePagesRangeWithInset:UIEdgeInsetsZero];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

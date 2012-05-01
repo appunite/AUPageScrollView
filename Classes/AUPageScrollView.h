@@ -53,6 +53,9 @@ extern NSString* AUPageScrollViewTagKey;
 
     BOOL _startChangingPageIndex;
     NSInteger _lastPageIndex;
+    
+    BOOL _rotationInProgress;
+    NSUInteger _pageIndexBeforeRotation;
 }
 
 @property (nonatomic, unsafe_unretained) id<AUPageScrollViewDelegate> delegate;
@@ -200,6 +203,9 @@ extern NSString* AUPageScrollViewTagKey;
 - (NSInteger)lastVisiblePageIndexWithInset:(UIEdgeInsets)inset;
 - (NSInteger)visiblePagesCount;
 - (NSInteger)visiblePagesCountWithInset:(UIEdgeInsets)inset;
+
+- (NSRange)visiblePagesRange;
+- (NSRange)visiblePagesRangeWithInset:(UIEdgeInsets)inset;
 
 - (CGRect)frameForPageAtIndex:(NSUInteger)index;
 - (CGPoint)originForPageAtIndex:(NSUInteger)index;

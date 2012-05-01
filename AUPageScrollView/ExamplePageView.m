@@ -21,14 +21,10 @@
         [_label setTextAlignment:UITextAlignmentCenter];
         [_label setBackgroundColor:[UIColor clearColor]];
         [_label setFont:[UIFont boldSystemFontOfSize:26.0f]];
-        
+        [_label setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
         [self addSubview:_label];
     }
     return self;
-}
-
-- (void)layoutSubviews {
-    _label.frame = [self bounds];    
 }
 
 - (void) setPageIndex:(NSUInteger)index {
