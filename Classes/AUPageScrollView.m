@@ -44,38 +44,52 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 #pragma mark Inits
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setupAUScrollView {
+    // clean flags
+    [self cleanFlags];
+    
+    //create array
+    _pages = [[NSMutableArray alloc] init];
+    
+    // create scrollView
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds]; 
+    [_scrollView setDelegate: self];
+    
+    [_scrollView setBackgroundColor:[UIColor clearColor]];
+    [_scrollView setShowsHorizontalScrollIndicator:YES];
+    
+    [_scrollView setBounces: YES];
+    [_scrollView setDirectionalLockEnabled: YES];
+    [_scrollView setMultipleTouchEnabled:NO];
+    [_scrollView setPagingEnabled:YES];        
+    [_scrollView setDecelerationRate: UIScrollViewDecelerationRateFast];
+    [_scrollView setScrollsToTop: NO];
+    [_scrollView setAutoresizingMask:
+     UIViewAutoresizingFlexibleWidth | 
+     UIViewAutoresizingFlexibleHeight];
+    
+    [self addSubview: _scrollView];
+    
+    _loadInset = UIEdgeInsetsZero;
+    
+    _scrollDirection = AUScrollHorizontalDirection;
+    _selectedPageIndex = -1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // clean flags
-        [self cleanFlags];
-        
-        //create array
-        _pages = [[NSMutableArray alloc] init];
-        
-        // create scrollView
-        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds]; 
-        [_scrollView setDelegate: self];
+        [self setupAUScrollView];
+    }
+    return self;
+}
 
-        [_scrollView setBackgroundColor:[UIColor clearColor]];
-        [_scrollView setShowsHorizontalScrollIndicator:YES];
-        
-        [_scrollView setBounces: YES];
-        [_scrollView setDirectionalLockEnabled: YES];
-        [_scrollView setMultipleTouchEnabled:NO];
-        [_scrollView setPagingEnabled:YES];        
-        [_scrollView setDecelerationRate: UIScrollViewDecelerationRateFast];
-        [_scrollView setScrollsToTop: NO];
-        [_scrollView setAutoresizingMask:
-         UIViewAutoresizingFlexibleWidth | 
-         UIViewAutoresizingFlexibleHeight];
-        
-        [self addSubview: _scrollView];
-        
-        _loadInset = UIEdgeInsetsZero;
-        
-        _scrollDirection = AUScrollHorizontalDirection;
-        _selectedPageIndex = -1;
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setupAUScrollView];
     }
     return self;
 }
