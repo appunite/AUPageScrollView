@@ -467,6 +467,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     NSUInteger firstLoadedPageIndex = [self firstVisiblePageIndexWithInset:loadInset];
     NSUInteger lastLoadedPageIndex = [self lastVisiblePageIndexWithInset:loadInset];
 
+    NSLog(@"scrollViewDidScroll - firstLoadedPageIndex: %d; lastLoadedPageIndex: %d", firstLoadedPageIndex, lastLoadedPageIndex);
+    
     if ((_indexOfFirstLoadedPage != firstLoadedPageIndex) || (_indexOfLastLoadedPage != lastLoadedPageIndex)) {
         
         // load boundary pages
