@@ -230,8 +230,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) unloadUnnecessaryPages {
     // prepare variables
-    //    UIEdgeInsets inset = _loadInset;
-    UIEdgeInsets inset = UIEdgeInsetsZero;
+    UIEdgeInsets inset = _loadInset;
+//    UIEdgeInsets inset = UIEdgeInsetsZero;
     NSUInteger firstVisiblePageIndexWithInset = [self firstVisiblePageIndexWithInset:inset];
     NSUInteger lastVisiblePageIndexWithInset = [self lastVisiblePageIndexWithInset:inset];
     
@@ -246,6 +246,25 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
             if ((index < firstVisiblePageIndexWithInset) || (index > lastVisiblePageIndexWithInset)) {
                 [indexSet addIndex:index];
             }
+        }
+    }
+    
+    // unload pages
+    [self unloadPageAtIndexes:indexSet];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) unloadAllPagesExcept:(NSInteger)exceptIndex {
+    
+    // create insex set to return
+    NSMutableIndexSet* indexSet = [[NSMutableIndexSet alloc] init];
+    
+    // find pages to unload
+    for (NSUInteger index = 0; index < _pageCount; index++) {
+        id item = [_pages objectAtIndex:index];
+        
+        if ((item != [NSNull null]) && (index != exceptIndex)) {
+            [indexSet addIndex:index];
         }
     }
     
@@ -398,7 +417,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     }
     
     // unload invisible pages
-    [self unloadUnnecessaryPages];
+    [self unloadAllPagesExcept:_pageIndexBeforeRotation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -95,6 +95,8 @@ extern NSString* AUPageScrollViewTagKey;
 
 - (void) loadBoundaryPages;
 - (void) unloadUnnecessaryPages;
+- (void) unloadAllPagesExcept:(NSInteger)index;
+
 /*
  * Load page at given index (if page is not loaded)
  */
