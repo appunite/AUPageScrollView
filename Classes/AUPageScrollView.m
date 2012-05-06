@@ -44,7 +44,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 #pragma mark Inits
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setupAUScrollView {
+- (void)setup {
     // clean flags
     [self cleanFlags];
     
@@ -80,7 +80,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupAUScrollView];
+        [self setup];
     }
     return self;
 }
@@ -89,7 +89,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self setupAUScrollView];
+        [self setup];
     }
     return self;
 }
