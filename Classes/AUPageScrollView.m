@@ -477,21 +477,21 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
     if (_rotationInProgress) return;
     
     // dont't call if no pages
     if ([_pages count] == 0) return;
     
+    // load boundary pages
+    [self layoutPages];
+
     // calculate page indexes (fist and last loaded pages)
     UIEdgeInsets loadInset = _loadInset;
     NSInteger firstLoadedPageIndex = [self firstVisiblePageIndexWithInset:loadInset];
     NSInteger lastLoadedPageIndex = [self lastVisiblePageIndexWithInset:loadInset];
-    
+        
     if ((_indexOfFirstLoadedPage != firstLoadedPageIndex) || (_indexOfLastLoadedPage != lastLoadedPageIndex)) {
-        
-        // load boundary pages
-        [self layoutPages];
-        
         // save flags
         _indexOfFirstLoadedPage = firstLoadedPageIndex; _indexOfLastLoadedPage = lastLoadedPageIndex;
     }
