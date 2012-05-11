@@ -37,7 +37,7 @@ extern NSString* AUPageScrollViewTagKey;
     //scroll direction, default AUScrollHorizontalDirection
     AUScrollDirection _scrollDirection;
     
-    NSUInteger _pageCount;
+    NSInteger _pageCount;
     NSInteger _selectedPageIndex;
 
     UIEdgeInsets _loadInset;    
@@ -55,7 +55,7 @@ extern NSString* AUPageScrollViewTagKey;
     NSInteger _lastPageIndex;
     
     BOOL _rotationInProgress;
-    NSUInteger _pageIndexBeforeRotation;
+    NSInteger _pageIndexBeforeRotation;
 }
 
 @property (nonatomic, unsafe_unretained) id<AUPageScrollViewDelegate> delegate;
@@ -86,7 +86,7 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Return page at index, if NSNull then return nil
  */
-- (UIView*) pageAtIndex:(NSUInteger)index;
+- (UIView*) pageAtIndex:(NSInteger)index;
 
 /*
  * Layout all pages
@@ -121,7 +121,7 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Scroll to wanted page
  */
-- (void) scrollToPageIndex:(NSUInteger)index animated:(BOOL)animated;
+- (void) scrollToPageIndex:(NSInteger)index animated:(BOOL)animated;
 
 /*
  * Handling View Rotations
@@ -155,10 +155,10 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Retun page size at index, if not defined page size is equal to view size
  */
-- (CGSize) pageScrollView:(AUPageScrollView*)pageScrollView pageSizeAtIndex:(NSUInteger)index;
+- (CGSize) pageScrollView:(AUPageScrollView*)pageScrollView pageSizeAtIndex:(NSInteger)index;
 
-- (void) pageScrollViewDidChangePage:(AUPageScrollView*)pageScrollView previousPageIndex:(NSUInteger)index;
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView didSelectPageAtIndex:(NSUInteger)index;
+- (void) pageScrollViewDidChangePage:(AUPageScrollView*)pageScrollView previousPageIndex:(NSInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView didSelectPageAtIndex:(NSInteger)index;
 
 /*
  * Methods called while reloadData.
@@ -169,17 +169,17 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Methods called when page get in/out of _scrollView bounds
  */
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView pageDidAppearAtIndex:(NSUInteger)index;
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView pageDidDisappearAtIndex:(NSUInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView pageDidAppearAtIndex:(NSInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView pageDidDisappearAtIndex:(NSInteger)index;
 
 /*
  * Visible or unvisible page can be loaded/unloaded (read _loadInset)
  */
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView willLoadPage:(UIView*)page atIndex:(NSUInteger)index;
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView willUnloadPage:(UIView*)page atIndex:(NSUInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView willLoadPage:(UIView*)page atIndex:(NSInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView willUnloadPage:(UIView*)page atIndex:(NSInteger)index;
 
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView didLoadPage:(UIView*)page atIndex:(NSUInteger)index;
-- (void) pageScrollView:(AUPageScrollView*)pageScrollView didUnloadPage:(UIView*)page atIndex:(NSUInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView didLoadPage:(UIView*)page atIndex:(NSInteger)index;
+- (void) pageScrollView:(AUPageScrollView*)pageScrollView didUnloadPage:(UIView*)page atIndex:(NSInteger)index;
 
 /*
  * Tell when scrollView did start/stop dragging
@@ -197,8 +197,8 @@ extern NSString* AUPageScrollViewTagKey;
 - (void) sendAppearanceDelegateMethodsIfNeeded;
 
 - (CGSize)scrollContentSize;
-- (NSUInteger)currentPageIndex;
-- (NSUInteger)indexOfPageContainsPoint:(CGPoint)point;
+- (NSInteger)currentPageIndex;
+- (NSInteger)indexOfPageContainsPoint:(CGPoint)point;
 - (NSInteger)firstVisiblePageIndex;
 - (NSInteger)firstVisiblePageIndexWithInset:(UIEdgeInsets)inset;
 - (NSInteger)lastVisiblePageIndex;
@@ -209,9 +209,9 @@ extern NSString* AUPageScrollViewTagKey;
 - (NSRange)visiblePagesRange;
 - (NSRange)visiblePagesRangeWithInset:(UIEdgeInsets)inset;
 
-- (CGRect)frameForPageAtIndex:(NSUInteger)index;
-- (CGPoint)originForPageAtIndex:(NSUInteger)index;
-- (CGSize)pageSizeAtIndex:(NSUInteger)index;
+- (CGRect)frameForPageAtIndex:(NSInteger)index;
+- (CGPoint)originForPageAtIndex:(NSInteger)index;
+- (CGSize)pageSizeAtIndex:(NSInteger)index;
 
 - (NSArray*)visiblePages;
 @end
@@ -222,19 +222,19 @@ extern NSString* AUPageScrollViewTagKey;
 @interface AUPageScrollView (Delegates)
 - (void) pageScrollViewStartReloadingData;
 - (void) pageScrollViewFinishReloadingData;
-- (void) pageScrollViewDidChangePage:(NSUInteger)previousIndex;
+- (void) pageScrollViewDidChangePage:(NSInteger)previousIndex;
 
-- (void) pageDidAppearAtIndex:(NSUInteger)index;
-- (void) pageDidDisappearAtIndex:(NSUInteger)index;
+- (void) pageDidAppearAtIndex:(NSInteger)index;
+- (void) pageDidDisappearAtIndex:(NSInteger)index;
 
-- (void) willLoadPage:(UIView*)page atIndex:(NSUInteger)index;
-- (void) willUnloadPage:(UIView*)page atIndex:(NSUInteger)index;
+- (void) willLoadPage:(UIView*)page atIndex:(NSInteger)index;
+- (void) willUnloadPage:(UIView*)page atIndex:(NSInteger)index;
 
-- (void) didLoadPage:(UIView*)page atIndex:(NSUInteger)index;
-- (void) didUnloadPage:(UIView*)page atIndex:(NSUInteger)index;
+- (void) didLoadPage:(UIView*)page atIndex:(NSInteger)index;
+- (void) didUnloadPage:(UIView*)page atIndex:(NSInteger)index;
 
-- (void) didSelectPageAtIndex:(NSUInteger)index;
-- (void) didDeselectPageAtIndex:(NSUInteger)index;
+- (void) didSelectPageAtIndex:(NSInteger)index;
+- (void) didDeselectPageAtIndex:(NSInteger)index;
 
 - (void) willBeginDragging;
 - (void) didEndDragging;

@@ -166,7 +166,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     UIEdgeInsets inset = _loadInset;
     NSRange range = [self visiblePagesRangeWithInset:inset];
     
-    for (NSUInteger i=0; i<range.length; i++) {
+    for (NSInteger i=0; i<range.length; i++) {
         [self loadPageAtIndex:i + range.location];
     }
     
@@ -179,7 +179,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 	// Load first visible pages
     NSRange range = [self visiblePagesRange];
     
-    for (NSUInteger i=range.location; i<range.length+range.location; i++) {
+    for (NSInteger i=range.location; i<range.length+range.location; i++) {
         if (![self pageAtIndex:i]) {
             [self loadPageAtIndex:i forceLoad:YES];
         }
@@ -189,7 +189,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) reloadCurrentPage {
     //    // get current page index
-    //    NSUInteger index = [self currentPageIndex];
+    //    NSInteger index = [self currentPageIndex];
     //
     //    // remove view from super view
     //    [[self pageAtIndex:index] removeFromSuperview];
@@ -202,7 +202,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*) pageAtIndex:(NSUInteger)index {
+- (UIView*) pageAtIndex:(NSInteger)index {
     // return nil if page doesn't exist
     if (![self pageExistAtIndex:index]) return nil;
     // get object from array
@@ -222,7 +222,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     // calculate last visible page
     NSInteger lastPage = [self lastVisiblePageIndexWithInset:loadInset];
     
-    for (NSUInteger i=firstPage; i<=lastPage; i++) {
+    for (NSInteger i=firstPage; i<=lastPage; i++) {
         [self loadPageAtIndex:i];
     }
 }
@@ -232,14 +232,14 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     // prepare variables
     UIEdgeInsets inset = _loadInset;
 //    UIEdgeInsets inset = UIEdgeInsetsZero;
-    NSUInteger firstVisiblePageIndexWithInset = [self firstVisiblePageIndexWithInset:inset];
-    NSUInteger lastVisiblePageIndexWithInset = [self lastVisiblePageIndexWithInset:inset];
+    NSInteger firstVisiblePageIndexWithInset = [self firstVisiblePageIndexWithInset:inset];
+    NSInteger lastVisiblePageIndexWithInset = [self lastVisiblePageIndexWithInset:inset];
     
     // create insex set to return
     NSMutableIndexSet* indexSet = [[NSMutableIndexSet alloc] init];
     
     // find pages to unload
-    for (NSUInteger index = 0; index < _pageCount; index++) {
+    for (NSInteger index = 0; index < _pageCount; index++) {
         id item = [_pages objectAtIndex:index];
         
         if (item != [NSNull null]) {
@@ -260,7 +260,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     NSMutableIndexSet* indexSet = [[NSMutableIndexSet alloc] init];
     
     // find pages to unload
-    for (NSUInteger index = 0; index < _pageCount; index++) {
+    for (NSInteger index = 0; index < _pageCount; index++) {
         id item = [_pages objectAtIndex:index];
         
         if ((item != [NSNull null]) && (index != exceptIndex)) {
@@ -346,7 +346,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
             
             // unload if can
             if (canUnload) {
-                NSUInteger index = [_pages indexOfObject:item];
+                NSInteger index = [_pages indexOfObject:item];
                 [self unloadPageAtIndex:index];
             }
             
@@ -368,7 +368,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
             // remove view form superview
             [item removeFromSuperview];
             // replace that item with NSNull ibject
-            NSUInteger index = [_pages indexOfObject:item];
+            NSInteger index = [_pages indexOfObject:item];
             [_pages replaceObjectAtIndex:index withObject:[NSNull null]];
         }
     }
@@ -377,7 +377,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 	[_pages removeAllObjects];
     
     //    // enumarate all pages and unload
-    //    for (NSUInteger i=[_pages count]; i>0; i--) {
+    //    for (NSInteger i=[_pages count]; i>0; i--) {
     //        [self unloadPageAtIndex:i];
     //    }
     //    
@@ -386,7 +386,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) scrollToPageIndex:(NSUInteger)index animated:(BOOL)animated {
+- (void) scrollToPageIndex:(NSInteger)index animated:(BOOL)animated {
     // get origin of page at index
     CGPoint point = [self originForPageAtIndex:index];
     // set content offset
@@ -484,8 +484,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     
     // calculate page indexes (fist and last loaded pages)
     UIEdgeInsets loadInset = _loadInset;
-    NSUInteger firstLoadedPageIndex = [self firstVisiblePageIndexWithInset:loadInset];
-    NSUInteger lastLoadedPageIndex = [self lastVisiblePageIndexWithInset:loadInset];
+    NSInteger firstLoadedPageIndex = [self firstVisiblePageIndexWithInset:loadInset];
+    NSInteger lastLoadedPageIndex = [self lastVisiblePageIndexWithInset:loadInset];
     
     if ((_indexOfFirstLoadedPage != firstLoadedPageIndex) || (_indexOfLastLoadedPage != lastLoadedPageIndex)) {
         
@@ -544,7 +544,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger) currentPageIndex {
+- (NSInteger) currentPageIndex {
     if (_scrollDirection == AUScrollHorizontalDirection) {
         return MIN(MAX(0, floorf((_scrollView.contentOffset.x + _scrollView.bounds.size.width * 0.5f) / _scrollView.bounds.size.width)), _pageCount);
     } else {
@@ -585,7 +585,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     }
     
     // calculate last page index, and fram eof last page
-    NSUInteger lastPageIndex = _pageCount -1;
+    NSInteger lastPageIndex = _pageCount -1;
     CGRect lastPageFrame = [self frameForPageAtIndex:lastPageIndex];
     
     // if calculated point is further than calculated point, return last page index
@@ -605,15 +605,15 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)visiblePagesCountWithInset:(UIEdgeInsets)inset {
     // find first and last visible page index
-    NSUInteger indexOfFirstVisiblePage = [self firstVisiblePageIndexWithInset:inset];
-    NSUInteger indexOfLastVisiblePage = [self lastVisiblePageIndexWithInset:inset];
+    NSInteger indexOfFirstVisiblePage = [self firstVisiblePageIndexWithInset:inset];
+    NSInteger indexOfLastVisiblePage = [self lastVisiblePageIndexWithInset:inset];
     
     // calculate count of visible pages
     return indexOfLastVisiblePage - indexOfFirstVisiblePage + 1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger) indexOfPageContainsPoint:(CGPoint)point {
+- (NSInteger) indexOfPageContainsPoint:(CGPoint)point {
     
     NSInteger index = 0;
     
@@ -625,7 +625,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         
         CGSize size = CGSizeZero;
         CGRect rect = CGRectZero;
-        for (NSUInteger i=0; i<_pageCount; i++) {
+        for (NSInteger i=0; i<_pageCount; i++) {
             
             size = [_delegate pageScrollView:self pageSizeAtIndex:i];
             
@@ -691,7 +691,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     NSInteger firstVisiblePageIndex = [self firstVisiblePageIndexWithInset:inset];
     NSInteger visiblePagesCount = [self visiblePagesCountWithInset:inset];
     
-    return NSMakeRange(firstVisiblePageIndex, visiblePagesCount);
+    return NSMakeRange(MAX(0, firstVisiblePageIndex), MAX(0, visiblePagesCount));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -708,7 +708,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         CGFloat width = 0;
         CGFloat height = 0;
         
-        for (NSUInteger i=0; i<_pageCount; i++) {
+        for (NSInteger i=0; i<_pageCount; i++) {
             CGSize size = [_delegate pageScrollView:self pageSizeAtIndex:i];
             width += size.width;
             height += size.height;
@@ -730,7 +730,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGPoint)originForPageAtIndex:(NSUInteger)index {
+- (CGPoint)originForPageAtIndex:(NSInteger)index {
     
     // if respond to selector then sum all pages to index
     if ([_delegate respondsToSelector:@selector(pageScrollView:pageSizeAtIndex:)]) {
@@ -738,7 +738,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         CGFloat originX = 0;
         CGFloat originY = 0;
         
-        for (NSUInteger i=0; i<index; i++) {
+        for (NSInteger i=0; i<index; i++) {
             CGSize size = [_delegate pageScrollView:self pageSizeAtIndex:i];
             originX += size.width;
             originY += size.height;
@@ -760,7 +760,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)pageSizeAtIndex:(NSUInteger)index {
+- (CGSize)pageSizeAtIndex:(NSInteger)index {
     
     // if respond to selector then sum all pages to index
     if ([_delegate respondsToSelector:@selector(pageScrollView:pageSizeAtIndex:)]) {
@@ -771,7 +771,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)frameForPageAtIndex:(NSUInteger)index {
+- (CGRect)frameForPageAtIndex:(NSInteger)index {
     // get origin and size of page at index
     CGPoint origin = [self originForPageAtIndex:index];
     CGSize size = [self pageSizeAtIndex:index];
@@ -844,7 +844,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) pageScrollViewDidChangePage:(NSUInteger)previousIndex {
+- (void) pageScrollViewDidChangePage:(NSInteger)previousIndex {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AUPageScrollViewDidChangePageNotification 
                                                         object:self 
@@ -857,7 +857,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) pageDidAppearAtIndex:(NSUInteger)index {
+- (void) pageDidAppearAtIndex:(NSInteger)index {
     if (![self pageExistAtIndex:index]) return;
     
     // bring page to from
@@ -872,7 +872,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) pageDidDisappearAtIndex:(NSUInteger)index {
+- (void) pageDidDisappearAtIndex:(NSInteger)index {
     
     if (![self pageExistAtIndex:index]) return;
     
@@ -884,7 +884,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) willLoadPage:(UIView*)page atIndex:(NSUInteger)index {
+- (void) willLoadPage:(UIView*)page atIndex:(NSInteger)index {
     
     if ([_delegate respondsToSelector:@selector(pageScrollView:willLoadPage:atIndex:)]) {
         [_delegate pageScrollView:self willLoadPage:page atIndex:index];
@@ -892,7 +892,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) willUnloadPage:(UIView*)page atIndex:(NSUInteger)index {
+- (void) willUnloadPage:(UIView*)page atIndex:(NSInteger)index {
     
     if ([_delegate respondsToSelector:@selector(pageScrollView:willUnloadPage:atIndex:)]) {
         [_delegate pageScrollView:self willUnloadPage:page atIndex:index];
@@ -900,7 +900,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didLoadPage:(UIView*)page atIndex:(NSUInteger)index {
+- (void) didLoadPage:(UIView*)page atIndex:(NSInteger)index {
     
     if ([_delegate respondsToSelector:@selector(pageScrollView:didLoadPage:atIndex:)]) {
         [_delegate pageScrollView:self didLoadPage:page atIndex:index];
@@ -932,7 +932,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didUnloadPage:(UIView*)page atIndex:(NSUInteger)index {
+- (void) didUnloadPage:(UIView*)page atIndex:(NSInteger)index {
     
     if ([_delegate respondsToSelector:@selector(pageScrollView:didUnloadPage:atIndex:)]) {
         [_delegate pageScrollView:self didUnloadPage:page atIndex:index];
@@ -940,7 +940,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didSelectPageAtIndex:(NSUInteger)index {
+- (void) didSelectPageAtIndex:(NSInteger)index {
     [self didDeselectPageAtIndex:_selectedPageIndex];
     
     if ([_delegate respondsToSelector:@selector(pageScrollView:didSelectPageAtIndex:)]) {
@@ -956,7 +956,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didDeselectPageAtIndex:(NSUInteger)index {
+- (void) didDeselectPageAtIndex:(NSInteger)index {
     id page = [self pageAtIndex:index];
     if ([page respondsToSelector:@selector(setSelected:animated:)]) {
         [page setSelected:NO animated:NO];
@@ -1042,7 +1042,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) tapGestureAction:(UITapGestureRecognizer*)gestureRecognizer {
-    NSUInteger index = [gestureRecognizer.view tag];
+    NSInteger index = [gestureRecognizer.view tag];
     [self didSelectPageAtIndex:index];
 }
 
