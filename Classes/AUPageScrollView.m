@@ -901,11 +901,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) didLoadPage:(UIView*)page atIndex:(NSInteger)index {
-    
-    if ([_delegate respondsToSelector:@selector(pageScrollView:didLoadPage:atIndex:)]) {
-        [_delegate pageScrollView:self didLoadPage:page atIndex:index];
-    }
-    
+        
     UIView* selectionResponsibleView = page;
     
     // if respond to selector return view from dataSource, else return loaded page
@@ -928,6 +924,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     
     if ([page respondsToSelector:@selector(setSelected:)]) {
         [(AUPageView*)page setSelected:((index == _selectedPageIndex) && (_selectedPageIndex > -1))];
+    }
+
+    if ([_delegate respondsToSelector:@selector(pageScrollView:didLoadPage:atIndex:)]) {
+        [_delegate pageScrollView:self didLoadPage:page atIndex:index];
     }
 }
 
