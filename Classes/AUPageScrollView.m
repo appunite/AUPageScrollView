@@ -212,7 +212,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) loadBoundaryPages {
+- (void)loadBoundaryPages:(BOOL)forced {
     // get load inset
     UIEdgeInsets loadInset = _loadInset;
     
@@ -223,7 +223,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     NSInteger lastPage = [self lastVisiblePageIndexWithInset:loadInset];
     
     for (NSInteger i=firstPage; i<=lastPage; i++) {
-        [self loadPageAtIndex:i];
+        [self loadPageAtIndex:i forceLoad:forced];
     }
 }
 
@@ -254,7 +254,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) unloadAllPagesExcept:(NSInteger)exceptIndex {
+- (void)unloadAllPagesExcept:(NSInteger)exceptIndex {
     
     // create insex set to return
     NSMutableIndexSet* indexSet = [[NSMutableIndexSet alloc] init];
@@ -274,7 +274,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutPages {
-    [self loadBoundaryPages];
+    [self loadBoundaryPages:NO];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

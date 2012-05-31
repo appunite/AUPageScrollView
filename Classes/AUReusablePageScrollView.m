@@ -36,7 +36,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) layoutPages {
-    [self loadBoundaryPages];
+    [self loadBoundaryPages:NO];
     [self unloadUnnecessaryPages];
 }
 

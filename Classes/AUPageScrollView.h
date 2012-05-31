@@ -93,9 +93,9 @@ extern NSString* AUPageScrollViewTagKey;
  */
 - (void)layoutPages;
 
-- (void) loadBoundaryPages;
-- (void) unloadUnnecessaryPages;
-- (void) unloadAllPagesExcept:(NSInteger)index;
+- (void)loadBoundaryPages:(BOOL)forced;
+- (void)unloadUnnecessaryPages;
+- (void)unloadAllPagesExcept:(NSInteger)index;
 
 /*
  * Load page at given index (if page is not loaded)
@@ -111,17 +111,17 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Unload all invisable pages
  */
-- (void) unloadInvisiblePages;
+- (void)unloadInvisiblePages;
 
 /*
  * Unload all pages
  */
-- (void) unloadAllPages;
+- (void)unloadAllPages;
 
 /*
  * Scroll to wanted page
  */
-- (void) scrollToPageIndex:(NSInteger)index animated:(BOOL)animated;
+- (void)scrollToPageIndex:(NSInteger)index animated:(BOOL)animated;
 
 /*
  * Handling View Rotations
