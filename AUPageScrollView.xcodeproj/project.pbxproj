@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203CBE29158FE12F00AD5881 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
 		20F5577C153D7CEF005BD460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577B153D7CEF005BD460 /* UIKit.framework */; };
 		20F5577E153D7CEF005BD460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577D153D7CEF005BD460 /* Foundation.framework */; };
 		20F55780153D7CEF005BD460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577F153D7CEF005BD460 /* CoreGraphics.framework */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		203CBE27158FE12F00AD5881 /* AUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUScrollView.h; path = Classes/AUScrollView.h; sourceTree = SOURCE_ROOT; };
+		203CBE28158FE12F00AD5881 /* AUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AUScrollView.m; path = Classes/AUScrollView.m; sourceTree = SOURCE_ROOT; };
 		20F55777153D7CEF005BD460 /* AUPageScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AUPageScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F5577B153D7CEF005BD460 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		20F5577D153D7CEF005BD460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				20F557A2153D7D74005BD460 /* AUReusablePageScrollView.m */,
 				20F5579F153D7D74005BD460 /* AUPageView.h */,
 				20F557A0153D7D74005BD460 /* AUPageView.m */,
+				203CBE27158FE12F00AD5881 /* AUScrollView.h */,
+				203CBE28158FE12F00AD5881 /* AUScrollView.m */,
 			);
 			name = Classes;
 			path = AUPageScrollView;
@@ -289,6 +294,7 @@
 				20F557A5153D7DAC005BD460 /* AUReusablePageScrollView.m in Sources */,
 				20F557A8153D7FCB005BD460 /* ExamplePageView.m in Sources */,
 				20F557AB153D81BF005BD460 /* ExamplePageScrollView.m in Sources */,
+				203CBE29158FE12F00AD5881 /* AUScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
