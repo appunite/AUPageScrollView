@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+//Views
+#import "AUScrollView.h"
+
 @protocol AUPageScrollViewDelegate;
 @protocol AUPageScrollViewDataSource;
-
-//@class AUScrollView;
-#import "AUScrollView.h"
 
 typedef enum {
     AUScrollHorizontalDirection     = 0,
@@ -35,7 +35,6 @@ extern NSString* AUPageScrollViewTagKey;
 
     UIEdgeInsets _loadInset;    
     UIEdgeInsets _appearanceInset;
-@private
     
     NSInteger _indexOfFirstLoadedPage;
     NSInteger _indexOfLastLoadedPage;

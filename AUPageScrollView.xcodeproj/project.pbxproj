@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		203CBE29158FE12F00AD5881 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
 		20496C8A1591113C00466D12 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
+		20C16B601592507D000B9EFE /* AUScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 203CBE27158FE12F00AD5881 /* AUScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20F5577C153D7CEF005BD460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577B153D7CEF005BD460 /* UIKit.framework */; };
 		20F5577E153D7CEF005BD460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577D153D7CEF005BD460 /* Foundation.framework */; };
 		20F55780153D7CEF005BD460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577F153D7CEF005BD460 /* CoreGraphics.framework */; };
@@ -186,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C673E7115541B8F0057C236 /* AUPageScrollView.h in Headers */,
+				20C16B601592507D000B9EFE /* AUScrollView.h in Headers */,
 				4C673E7215541B920057C236 /* AUReusablePageScrollView.h in Headers */,
 				4C673E7315541B950057C236 /* AUPageView.h in Headers */,
 			);
