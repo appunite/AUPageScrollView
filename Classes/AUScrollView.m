@@ -26,7 +26,7 @@
         [self setShowsHorizontalScrollIndicator:YES];
         [self setBounces: YES];
         [self setDirectionalLockEnabled: YES];
-//        [self setMultipleTouchEnabled:NO];
+        [self setMultipleTouchEnabled:NO];
         [self setPagingEnabled:YES];        
         [self setDecelerationRate: UIScrollViewDecelerationRateFast];
         [self setScrollsToTop: NO];
@@ -47,7 +47,7 @@
     [super setContentSize:contentSize];
     
     // calculate rect of contentView
-    CGRect contentRect = CGRectMake(0.0f, 0.0f, contentSize.width, contentSize.height);
+    CGRect contentRect = CGRectMake(0.0f, 0.0f, MAX(contentSize.width, CGRectGetWidth(self.bounds)), MAX(contentSize.height, CGRectGetHeight(self.bounds)));
     _intermediateView.frame = contentRect;
     
     // make view visible
