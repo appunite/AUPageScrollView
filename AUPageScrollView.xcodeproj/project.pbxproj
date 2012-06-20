@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		203CBE29158FE12F00AD5881 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
+		20496C8A1591113C00466D12 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
 		20F5577C153D7CEF005BD460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577B153D7CEF005BD460 /* UIKit.framework */; };
 		20F5577E153D7CEF005BD460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577D153D7CEF005BD460 /* Foundation.framework */; };
 		20F55780153D7CEF005BD460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577F153D7CEF005BD460 /* CoreGraphics.framework */; };
@@ -302,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20496C8A1591113C00466D12 /* AUScrollView.m in Sources */,
 				20F557BB153D82AF005BD460 /* AUPageScrollView.m in Sources */,
 				20F557BC153D82AF005BD460 /* AUReusablePageScrollView.m in Sources */,
 				20F557BD153D82AF005BD460 /* AUPageView.m in Sources */,

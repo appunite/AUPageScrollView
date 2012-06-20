@@ -25,20 +25,10 @@ extern NSString* AUPageScrollViewTagKey;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-@interface AUPageScrollView : UIView <UIScrollViewDelegate, UIGestureRecognizerDelegate> {
+@interface AUPageScrollView : AUScrollView <UIGestureRecognizerDelegate> {
 @protected
-    // scroll view
-    AUScrollView *_scrollView;
-    
-    // objects communications
-    __unsafe_unretained id<AUPageScrollViewDelegate> _delegate;
-    __unsafe_unretained id<AUPageScrollViewDataSource> _dataSource;
-    
     // contain all pages, if page is unloaded then page is respresented as [NSNull null]
     NSMutableArray* _pages;
-    
-    //scroll direction, default AUScrollHorizontalDirection
-    AUScrollDirection _scrollDirection;
     
     NSInteger _pageCount;
     NSInteger _selectedPageIndex;
@@ -58,21 +48,24 @@ extern NSString* AUPageScrollViewTagKey;
     NSInteger _lastPageIndex;
     
     BOOL _rotationInProgress;
-    NSInteger _pageIndexBeforeRotation;
-    
+    NSRange _rangeBeforeRotation;
+
     BOOL _isLoading;
 }
 
-@property (nonatomic, unsafe_unretained) id<AUPageScrollViewDelegate> delegate;
 @property (nonatomic, unsafe_unretained) id<AUPageScrollViewDataSource> dataSource;
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, assign) AUScrollDirection scrollDirection;
-@property (nonatomic, getter=isScrollEnabled) BOOL scrollEnabled;
+@property (nonatomic, assign) AUScrollDirection scrollDirection; //scroll direction, default AUScrollHorizontalDirection
 
 /*
  * Keep all pages. If page is unloaded, it's represented by null of NSNull class.
  */
 @property (nonatomic, strong, readonly) NSMutableArray* pages;
+
+/*
+ * Redefine delegate.
+ */
+- (id<AUPageScrollViewDelegate>)delegate;
+- (void)setDelegate:(id<AUPageScrollViewDelegate>)delegate;
 
 /*
  * Init with proper frame and scroll direction.
@@ -108,6 +101,7 @@ extern NSString* AUPageScrollViewTagKey;
 
 /*
  * Load page at given index (if page is not loaded)
+ * Returned view is always in poper location.
  */
 - (UIView *)loadPageAtIndex:(NSInteger)index;
 
@@ -159,7 +153,7 @@ extern NSString* AUPageScrollViewTagKey;
 - (UIView*)selectionResponsibleViewInPageScrollView:(AUPageScrollView*)pageScrollView forPageView:(UIView*)page;
 @end
 
-@protocol AUPageScrollViewDelegate <NSObject>
+@protocol AUPageScrollViewDelegate <UIScrollViewDelegate, NSObject>
 @optional
 /*
  * Retun page size at index, if not defined page size is equal to view size
@@ -187,12 +181,6 @@ extern NSString* AUPageScrollViewTagKey;
 - (void)pageScrollView:(AUPageScrollView*)pageScrollView didLoadPage:(UIView*)page atIndex:(NSInteger)index;
 - (void)pageScrollView:(AUPageScrollView*)pageScrollView didUnloadPage:(UIView*)page atIndex:(NSInteger)index;
 
-/*
- * Tell when scrollView did start/stop dragging
- */
-- (void)pageScrollViewWillBeginDragging:(AUPageScrollView*)pageScrollView;
-- (void)pageScrollViewDidEndDragging:(AUPageScrollView*)pageScrollView;
-
 @end
 
 
@@ -213,14 +201,13 @@ extern NSString* AUPageScrollViewTagKey;
 - (NSInteger)currentPageIndex;
 - (NSInteger)indexOfPageContainsPoint:(CGPoint)point;
 
-- (NSRange)visiblePagesRange;
 - (NSRange)visiblePagesRangeWithInset:(UIEdgeInsets)inset;
+- (NSArray*)visiblePages;
 
 - (CGRect)frameForPageAtIndex:(NSInteger)index;
 - (CGPoint)originForPageAtIndex:(NSInteger)index;
 - (CGSize)pageSizeAtIndex:(NSInteger)index;
 
-- (NSArray*)visiblePages;
 @end
 
 

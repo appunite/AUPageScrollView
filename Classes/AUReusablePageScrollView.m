@@ -29,13 +29,13 @@
 #pragma mark Class methods
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) reloadPageAtIndex:(NSUInteger)index {
+- (void)reloadPageAtIndex:(NSUInteger)index {
     [self unloadPageAtIndex:index];
     [self loadPageAtIndex:index];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) layoutPages {
+- (void)layoutPages {
     [self loadBoundaryPages:NO];
     [self unloadUnnecessaryPages];
 }
@@ -62,12 +62,12 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) setDelegate:(id<AUReusablePageScrollViewDelegate>)delegate {
-    _delegate = delegate;
+    [super setDelegate:delegate];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<AUReusablePageScrollViewDelegate>)delegate {
-    return (id<AUReusablePageScrollViewDelegate>)_delegate;
+    return (id<AUReusablePageScrollViewDelegate>)[super delegate];
 }
 
 @end
@@ -93,15 +93,15 @@
 @implementation AUReusablePageScrollView (Delegates)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didRecyclePage:(UIView*)page {
-    if ([_delegate respondsToSelector:@selector(pageScrollView:didRecyclePage:)]) {
+- (void)didRecyclePage:(UIView*)page {
+    if ([[self delegate] respondsToSelector:@selector(pageScrollView:didRecyclePage:)]) {
         [[self delegate] pageScrollView:self didRecyclePage:page];
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didDequeuePage:(UIView*)page {
-    if ([_delegate respondsToSelector:@selector(pageScrollView:didDequeuePage:)]) {
+- (void)didDequeuePage:(UIView*)page {
+    if ([[self delegate] respondsToSelector:@selector(pageScrollView:didDequeuePage:)]) {
         [[self delegate] pageScrollView:self didDequeuePage:page];
     }
 }

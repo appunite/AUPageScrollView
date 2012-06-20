@@ -10,12 +10,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol AUPageViewDelegate <NSObject>
-@optional
-// Rotation
-- (void)willAnimateRotationWithDuration:(NSTimeInterval)duration;
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation;
-
 //Selection
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 @end
