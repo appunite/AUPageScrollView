@@ -132,6 +132,10 @@ extern NSString* AUPageScrollViewTagKey;
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
+/*
+ * Others
+ */
+- (NSIndexSet *)indexesOfPages;
 @end
 
 @protocol AUPageScrollViewDataSource <NSObject>

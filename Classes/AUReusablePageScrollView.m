@@ -9,21 +9,10 @@
 
 @interface AUReusablePageScrollView (Private)
 - (void)recyclePage:(UIView *)page;
+- (NSMutableSet *)recycledPages;
 @end
 
 @implementation AUReusablePageScrollView
-
-#pragma mark -
-#pragma mark Init
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        _recycledPages = [[NSMutableSet alloc] init];
-    }
-    return self;
-}
 
 #pragma mark -
 #pragma mark Class methods
@@ -42,9 +31,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView *)dequeueReusablePage {
-    UIView *result = [_recycledPages anyObject];
+    UIView *result = [[self recycledPages] anyObject];
     if (result) {
-        [_recycledPages removeObject:result];
+        [[self recycledPages] removeObject:result];
         [self didDequeuePage:result];
     }
     return result;
@@ -70,6 +59,16 @@
     return (id<AUReusablePageScrollViewDelegate>)[super delegate];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDataSource:(id<AUReusablePageScrollViewDataSource>)dataSource {
+    [super setDataSource:dataSource];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<AUReusablePageScrollViewDataSource>)dataSource {
+    return (id<AUReusablePageScrollViewDataSource>)[super dataSource];
+}
+
 @end
 
 
@@ -79,11 +78,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)recyclePage:(UIView *)page {
     // recycle page
-    [_recycledPages addObject:page];
+    [[self recycledPages] addObject:page];
     // remove from super view
     [page removeFromSuperview];
     // send delegate
     [self didRecyclePage:page];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMutableSet *)recycledPages {
+    if ([self.dataSource respondsToSelector:@selector(recycledPagesForPageScrollView:)] && [self.dataSource recycledPagesForPageScrollView:self]) {
+        return [self.dataSource recycledPagesForPageScrollView:self];
+    } else {
+        if (!_recycledPages) {
+            _recycledPages = [[NSMutableSet alloc] init];
+        }
+        return _recycledPages;
+    }
 }
 
 @end

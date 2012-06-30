@@ -380,6 +380,23 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     [self sendAppearanceDelegateMethodsIfNeeded];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSIndexSet *)indexesOfPages {
+    NSArray* objects = [self pages];
+    
+    if (![objects count]) {
+        return ([NSIndexSet indexSet]);
+    }
+    
+    NSMutableIndexSet* indexes = [NSMutableIndexSet indexSet];
+    
+    [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [indexes addIndex: idx];
+    }];
+    
+    return indexes;
+}
+
 #pragma mark -
 #pragma mark Handling View Rotations
 
