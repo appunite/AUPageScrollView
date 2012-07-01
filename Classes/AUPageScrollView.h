@@ -87,7 +87,7 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Return page at index, if NSNull then return nil
  */
-- (UIView*) pageAtIndex:(NSInteger)index;
+- (UIView*)pageAtIndex:(NSInteger)index;
 
 /*
  * Layout all pages
@@ -123,7 +123,7 @@ extern NSString* AUPageScrollViewTagKey;
 /*
  * Scroll to wanted page
  */
-- (void)scrollToPageIndex:(NSInteger)index animated:(BOOL)animated;
+- (UIView*)scrollToPageIndex:(NSInteger)index animated:(BOOL)animated;
 
 /*
  * Handling View Rotations

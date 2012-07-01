@@ -107,6 +107,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     // send didChangePage: notification
     if (_currentPageIndex != _lastPageIndex) {
         [self pageScrollViewDidChangePage:_lastPageIndex]; 
+        _lastPageIndex = _currentPageIndex;
     }
 }
 
@@ -367,7 +368,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollToPageIndex:(NSInteger)index animated:(BOOL)animated {
+- (UIView*)scrollToPageIndex:(NSInteger)index animated:(BOOL)animated {
     // get origin of page at index
     CGPoint point = [self originForPageAtIndex:index];
     // set content offset
@@ -378,6 +379,9 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     
     // invoke page did appera/disappear
     [self sendAppearanceDelegateMethodsIfNeeded];
+    
+    // return page at index path
+    return [self pageAtIndex:index];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -441,25 +445,25 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 #pragma mark -
 #pragma mark UIScrollView Delegate
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    if (_startChangingPageIndex) {
-        if (_currentPageIndex != _lastPageIndex) {
-            [self pageScrollViewDidChangePage:_lastPageIndex]; 
-            _startChangingPageIndex = NO;
-        }
-    }    
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (_startChangingPageIndex) {
-        if (_currentPageIndex != _lastPageIndex) {
-            [self pageScrollViewDidChangePage:_lastPageIndex]; 
-            _startChangingPageIndex = NO;
-        }
-    }  
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+//    if (_startChangingPageIndex) {
+//        if (_currentPageIndex != _lastPageIndex) {
+//            [self pageScrollViewDidChangePage:_lastPageIndex]; 
+//            _startChangingPageIndex = NO;
+//        }
+//    }    
+//}
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    if (_startChangingPageIndex) {
+//        if (_currentPageIndex != _lastPageIndex) {
+//            [self pageScrollViewDidChangePage:_lastPageIndex]; 
+//            _startChangingPageIndex = NO;
+//        }
+//    }  
+//}
 
 @end
 
@@ -686,10 +690,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     _currentPageIndex = [self currentPageIndex];
     
     // save ivar used to call pageScrollViewDidChangePage method
-    if (!_startChangingPageIndex) {
-        _startChangingPageIndex = YES;
-        _lastPageIndex = _currentPageIndex;
-    }
+//    if (!_startChangingPageIndex) {
+//        _startChangingPageIndex = YES;
+//        _lastPageIndex = _currentPageIndex;
+//    }
     
     // calculate first visible page
     UIEdgeInsets appearanceInset = UIEdgeInsetsZero; // UIEdgeInsetsMake(-5.0f, -5.0f, 5.0f, 5.0f);
