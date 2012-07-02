@@ -25,7 +25,6 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 @implementation AUPageScrollView
 @synthesize dataSource = _dataSource;
 @synthesize scrollDirection = _scrollDirection;
-@synthesize scrollEnabled;
 @synthesize pages = _pages;
 
 #pragma mark -
@@ -713,7 +712,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     
     // take care of right side
     NSInteger lastVisiblePageIndex = range.location + range.length -1;
-    if ([self pageExistAtIndex:lastVisiblePageIndex] && lastVisiblePageIndex != range.location) {
+    if ([self pageExistAtIndex:lastVisiblePageIndex]) {
+//    if ([self pageExistAtIndex:lastVisiblePageIndex] && (lastVisiblePageIndex != range.location || range.location == 0)) {
         if (_indexOfLastVisiblePage < lastVisiblePageIndex) {
             [self pageDidAppearAtIndex: lastVisiblePageIndex];
             _indexOfLastVisiblePage = lastVisiblePageIndex;

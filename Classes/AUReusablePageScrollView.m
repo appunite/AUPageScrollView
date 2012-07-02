@@ -87,14 +87,20 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSMutableSet *)recycledPages {
-    if ([self.dataSource respondsToSelector:@selector(recycledPagesForPageScrollView:)] && [self.dataSource recycledPagesForPageScrollView:self]) {
-        return [self.dataSource recycledPagesForPageScrollView:self];
-    } else {
-        if (!_recycledPages) {
-            _recycledPages = [[NSMutableSet alloc] init];
+    id<AUReusablePageScrollViewDataSource> dataSource = self.dataSource;
+    
+    if ([dataSource respondsToSelector:@selector(recycledPagesForPageScrollView:)]) {
+        
+        NSMutableSet* recycledPages = [dataSource recycledPagesForPageScrollView:self];
+        if (recycledPages) {
+            return [dataSource recycledPagesForPageScrollView:self];
         }
-        return _recycledPages;
     }
+    
+    if (!_recycledPages) {
+        _recycledPages = [[NSMutableSet alloc] init];
+    }
+    return _recycledPages;
 }
 
 @end

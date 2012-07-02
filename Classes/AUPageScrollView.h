@@ -52,7 +52,7 @@ extern NSString* AUPageScrollViewTagKey;
     BOOL _isLoading;
 }
 
-@property (nonatomic, unsafe_unretained) id<AUPageScrollViewDataSource> dataSource;
+@property (nonatomic, assign) id<AUPageScrollViewDataSource> dataSource;
 @property (nonatomic, assign) AUScrollDirection scrollDirection; //scroll direction, default AUScrollHorizontalDirection
 
 /*
