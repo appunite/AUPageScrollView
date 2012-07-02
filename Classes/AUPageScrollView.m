@@ -853,7 +853,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    if ([touch.view isKindOfClass:[UIControl class]]) {
+    if ([touch.view isKindOfClass:[UIControl class]] && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         // we touched a button, slider, or other UIControl
         return NO; // ignore the touch
     }
