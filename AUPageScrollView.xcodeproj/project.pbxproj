@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203CBE29158FE12F00AD5881 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
+		20496C8A1591113C00466D12 /* AUScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 203CBE28158FE12F00AD5881 /* AUScrollView.m */; };
+		20C16B601592507D000B9EFE /* AUScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 203CBE27158FE12F00AD5881 /* AUScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20F5577C153D7CEF005BD460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577B153D7CEF005BD460 /* UIKit.framework */; };
 		20F5577E153D7CEF005BD460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577D153D7CEF005BD460 /* Foundation.framework */; };
 		20F55780153D7CEF005BD460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F5577F153D7CEF005BD460 /* CoreGraphics.framework */; };
@@ -31,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		203CBE27158FE12F00AD5881 /* AUScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUScrollView.h; path = Classes/AUScrollView.h; sourceTree = SOURCE_ROOT; };
+		203CBE28158FE12F00AD5881 /* AUScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AUScrollView.m; path = Classes/AUScrollView.m; sourceTree = SOURCE_ROOT; };
 		20F55777153D7CEF005BD460 /* AUPageScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AUPageScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F5577B153D7CEF005BD460 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		20F5577D153D7CEF005BD460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,8 +90,8 @@
 		20F5576C153D7CEF005BD460 = {
 			isa = PBXGroup;
 			children = (
-				20F55781153D7CEF005BD460 /* Example */,
 				20F5579C153D7D2C005BD460 /* Classes */,
+				20F55781153D7CEF005BD460 /* Example */,
 				20F557B2153D82A2005BD460 /* AUPageScrollViewLib */,
 				20F5577A153D7CEF005BD460 /* Frameworks */,
 				20F55778153D7CEF005BD460 /* Products */,
@@ -149,6 +154,8 @@
 				20F557A2153D7D74005BD460 /* AUReusablePageScrollView.m */,
 				20F5579F153D7D74005BD460 /* AUPageView.h */,
 				20F557A0153D7D74005BD460 /* AUPageView.m */,
+				203CBE27158FE12F00AD5881 /* AUScrollView.h */,
+				203CBE28158FE12F00AD5881 /* AUScrollView.m */,
 			);
 			name = Classes;
 			path = AUPageScrollView;
@@ -180,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C673E7115541B8F0057C236 /* AUPageScrollView.h in Headers */,
+				20C16B601592507D000B9EFE /* AUScrollView.h in Headers */,
 				4C673E7215541B920057C236 /* AUReusablePageScrollView.h in Headers */,
 				4C673E7315541B950057C236 /* AUPageView.h in Headers */,
 			);
@@ -289,6 +297,7 @@
 				20F557A5153D7DAC005BD460 /* AUReusablePageScrollView.m in Sources */,
 				20F557A8153D7FCB005BD460 /* ExamplePageView.m in Sources */,
 				20F557AB153D81BF005BD460 /* ExamplePageScrollView.m in Sources */,
+				203CBE29158FE12F00AD5881 /* AUScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20496C8A1591113C00466D12 /* AUScrollView.m in Sources */,
 				20F557BB153D82AF005BD460 /* AUPageScrollView.m in Sources */,
 				20F557BC153D82AF005BD460 /* AUReusablePageScrollView.m in Sources */,
 				20F557BD153D82AF005BD460 /* AUPageView.m in Sources */,
@@ -406,6 +416,7 @@
 				DSTROOT = /tmp/AUPageScrollViewLib.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AUPageScrollViewLib/AUPageScrollViewLib-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/AUPageScrollView/private;
@@ -426,6 +437,7 @@
 				DSTROOT = /tmp/AUPageScrollViewLib.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AUPageScrollViewLib/AUPageScrollViewLib-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = include/AUPageScrollView/private;

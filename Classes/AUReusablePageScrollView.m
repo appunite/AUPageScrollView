@@ -9,6 +9,7 @@
 
 @interface AUReusablePageScrollView (Private)
 - (void)recyclePage:(UIView *)page;
+- (NSMutableSet *)recycledPages;
 @end
 
 @implementation AUReusablePageScrollView
@@ -43,22 +44,22 @@
 #pragma mark Class methods
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) reloadPageAtIndex:(NSUInteger)index {
+- (void)reloadPageAtIndex:(NSUInteger)index {
     [self unloadPageAtIndex:index];
     [self loadPageAtIndex:index];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) layoutPages {
-    [self loadBoundaryPages];
+- (void)layoutPages {
+    [self loadBoundaryPages:NO];
     [self unloadUnnecessaryPages];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView *)dequeueReusablePage {
-    UIView *result = [_recycledPages anyObject];
+    UIView *result = [[self recycledPages] anyObject];
     if (result) {
-        [_recycledPages removeObject:result];
+        [[self recycledPages] removeObject:result];
         [self didDequeuePage:result];
     }
     return result;
@@ -76,12 +77,22 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) setDelegate:(id<AUReusablePageScrollViewDelegate>)delegate {
-    _delegate = delegate;
+    [super setDelegate:delegate];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<AUReusablePageScrollViewDelegate>)delegate {
-    return (id<AUReusablePageScrollViewDelegate>)_delegate;
+    return (id<AUReusablePageScrollViewDelegate>)[super delegate];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDataSource:(id<AUReusablePageScrollViewDataSource>)dataSource {
+    [super setDataSource:dataSource];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<AUReusablePageScrollViewDataSource>)dataSource {
+    return (id<AUReusablePageScrollViewDataSource>)[super dataSource];
 }
 
 @end
@@ -93,11 +104,29 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)recyclePage:(UIView *)page {
     // recycle page
-    [_recycledPages addObject:page];
+    [[self recycledPages] addObject:page];
     // remove from super view
     [page removeFromSuperview];
     // send delegate
     [self didRecyclePage:page];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMutableSet *)recycledPages {
+    id<AUReusablePageScrollViewDataSource> dataSource = self.dataSource;
+    
+    if ([dataSource respondsToSelector:@selector(recycledPagesForPageScrollView:)]) {
+        
+        NSMutableSet* recycledPages = [dataSource recycledPagesForPageScrollView:self];
+        if (recycledPages) {
+            return [dataSource recycledPagesForPageScrollView:self];
+        }
+    }
+    
+    if (!_recycledPages) {
+        _recycledPages = [[NSMutableSet alloc] init];
+    }
+    return _recycledPages;
 }
 
 @end
@@ -107,15 +136,15 @@
 @implementation AUReusablePageScrollView (Delegates)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didRecyclePage:(UIView*)page {
-    if ([_delegate respondsToSelector:@selector(pageScrollView:didRecyclePage:)]) {
+- (void)didRecyclePage:(UIView*)page {
+    if ([[self delegate] respondsToSelector:@selector(pageScrollView:didRecyclePage:)]) {
         [[self delegate] pageScrollView:self didRecyclePage:page];
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didDequeuePage:(UIView*)page {
-    if ([_delegate respondsToSelector:@selector(pageScrollView:didDequeuePage:)]) {
+- (void)didDequeuePage:(UIView*)page {
+    if ([[self delegate] respondsToSelector:@selector(pageScrollView:didDequeuePage:)]) {
         [[self delegate] pageScrollView:self didDequeuePage:page];
     }
 }

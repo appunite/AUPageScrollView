@@ -13,6 +13,7 @@
 #import "AUPageScrollView.h"
 
 @protocol AUReusablePageScrollViewDelegate;
+@protocol AUReusablePageScrollViewDataSource;
 
 @interface AUReusablePageScrollView : AUPageScrollView {
 @private
@@ -23,13 +24,19 @@
  * Dequeue reusable page, nil if none
  */
 - (UIView *)dequeueReusablePage;
-- (void) reloadPageAtIndex:(NSUInteger)index;
+- (void)reloadPageAtIndex:(NSUInteger)index;
 
 /*
  * Delegates reimplementation
  */
-- (void) setDelegate:(id<AUReusablePageScrollViewDelegate>)delegate;
+- (void)setDelegate:(id<AUReusablePageScrollViewDelegate>)delegate;
 - (id<AUReusablePageScrollViewDelegate>)delegate;
+
+/*
+ * DataSource reimplementation
+ */
+- (void)setDataSource:(id<AUReusablePageScrollViewDataSource>)dataSource;
+- (id<AUReusablePageScrollViewDataSource>)dataSource;
 
 @end
 
@@ -37,8 +44,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @protocol AUReusablePageScrollViewDelegate <AUPageScrollViewDelegate>
 @optional
-- (void)pageScrollView:(AUPageScrollView *)pageScrollView didRecyclePage:(UIView*)page;
-- (void)pageScrollView:(AUPageScrollView *)pageScrollView didDequeuePage:(UIView*)page;
+- (void)pageScrollView:(AUReusablePageScrollView *)pageScrollView didRecyclePage:(UIView*)page;
+- (void)pageScrollView:(AUReusablePageScrollView *)pageScrollView didDequeuePage:(UIView*)page;
+@end
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+@protocol AUReusablePageScrollViewDataSource <AUPageScrollViewDataSource>
+@optional
+- (NSMutableSet *)recycledPagesForPageScrollView:(AUReusablePageScrollView*)scrollView;
 @end
 
 
