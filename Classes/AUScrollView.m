@@ -11,6 +11,25 @@
 @implementation AUScrollView
 @synthesize intermediateView = _intermediateView;
 
+- (void)initizlize {
+    // set up view
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self setShowsHorizontalScrollIndicator:YES];
+    [self setBounces: YES];
+    [self setDirectionalLockEnabled: YES];
+    [self setMultipleTouchEnabled:NO];
+    [self setPagingEnabled:YES];        
+    [self setDecelerationRate: UIScrollViewDecelerationRateFast];
+    [self setScrollsToTop: NO];
+    [self setAutoresizingMask:
+     UIViewAutoresizingFlexibleWidth | 
+     UIViewAutoresizingFlexibleHeight];
+    
+    // intermidiate view containing all subviews
+    _intermediateView = [[UIView alloc] init];
+    [self addSubview:_intermediateView];
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
     return [self initWithFrame:CGRectZero];
@@ -20,23 +39,16 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        [self initizlize];
+    }
+    return self;
+}
 
-        // set up view
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self setShowsHorizontalScrollIndicator:YES];
-        [self setBounces: YES];
-        [self setDirectionalLockEnabled: YES];
-        [self setMultipleTouchEnabled:NO];
-        [self setPagingEnabled:YES];        
-        [self setDecelerationRate: UIScrollViewDecelerationRateFast];
-        [self setScrollsToTop: NO];
-        [self setAutoresizingMask:
-         UIViewAutoresizingFlexibleWidth | 
-         UIViewAutoresizingFlexibleHeight];
-
-        // intermidiate view containing all subviews
-        _intermediateView = [[UIView alloc] init];
-        [self addSubview:_intermediateView];
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initizlize];
     }
     return self;
 }
