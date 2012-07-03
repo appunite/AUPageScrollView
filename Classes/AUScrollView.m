@@ -11,7 +11,8 @@
 @implementation AUScrollView
 @synthesize intermediateView = _intermediateView;
 
-- (void)initizlize {
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initialize {
     // set up view
     [self setBackgroundColor:[UIColor clearColor]];
     [self setShowsHorizontalScrollIndicator:YES];
@@ -39,7 +40,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initizlize];
+        [self initialize];
     }
     return self;
 }
@@ -48,7 +49,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self initizlize];
+        [self initialize];
     }
     return self;
 }
