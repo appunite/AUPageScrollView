@@ -17,8 +17,22 @@
 #pragma mark Init
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+    return [self initWithFrame:CGRectZero];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    if (self) {
+        _recycledPages = [[NSMutableSet alloc] init];
+    }
+    return self;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
         _recycledPages = [[NSMutableSet alloc] init];
     }
