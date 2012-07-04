@@ -787,39 +787,49 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didLoadPage:(UIView*)page atIndex:(NSInteger)index {
+- (void)didLoadPage:(AUPageView*)page atIndex:(NSInteger)index {
         
-    UIView* selectionResponsibleView = page;
-    
-    // if respond to selector return view from dataSource, else return loaded page
-    if ([_dataSource respondsToSelector:@selector(selectionResponsibleViewInPageScrollView:forPageView:)]) {
-        selectionResponsibleView = [[self dataSource] selectionResponsibleViewInPageScrollView:self forPageView:page];
+    if ([page respondsToSelector:@selector(selectionTapGestureRecognizer)]) {
+        AUPageView* selectionResponsibleView = page;
+        
+        // if respond to selector return view from dataSource, else return loaded page
+        if ([_dataSource respondsToSelector:@selector(selectionResponsibleViewInPageScrollView:forPageView:)]) {
+            selectionResponsibleView = [[self dataSource] selectionResponsibleViewInPageScrollView:self forPageView:page];
+        }
+        
+        // set tag, used in tapGestureRecognizer
+        [selectionResponsibleView setTag:index];
+        
+        // get tap gesture recognizer 
+        UITapGestureRecognizer* tapGestureRecognizer = [page selectionTapGestureRecognizer];
+        
+        // set up tap gesture recognizer
+        [tapGestureRecognizer addTarget:self action:@selector(tapGestureAction:)];
+        tapGestureRecognizer.delegate = self;
+        
+        // add tap gesture recognizer to selectionResponsibleView
+        [selectionResponsibleView addGestureRecognizer:tapGestureRecognizer];
+        
+        if ([page respondsToSelector:@selector(setSelected:)]) {
+            [(AUPageView*)page setSelected:((index == _selectedPageIndex) && (_selectedPageIndex > -1))];
+        }
     }
     
-    // set tag, used in tapGestureRecognizer
-    [selectionResponsibleView setTag:index];
-    
-    // create tap gesture recognizer 
-    UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] 
-                                                    initWithTarget:self 
-                                                    action:@selector(tapGestureAction:)];
-    //    tapGestureRecognizer.cancelsTouchesInView = NO;
-    tapGestureRecognizer.delegate = self;
-    
-    // add tap gesture recognizer to selectionResponsibleView
-    [selectionResponsibleView addGestureRecognizer:tapGestureRecognizer];
-    
-    if ([page respondsToSelector:@selector(setSelected:)]) {
-        [(AUPageView*)page setSelected:((index == _selectedPageIndex)&& (_selectedPageIndex > -1))];
-    }
-
     if ([[self delegate] respondsToSelector:@selector(pageScrollView:didLoadPage:atIndex:)]) {
         [[self delegate] pageScrollView:self didLoadPage:page atIndex:index];
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didUnloadPage:(UIView*)page atIndex:(NSInteger)index {
+- (void)didUnloadPage:(AUPageView*)page atIndex:(NSInteger)index {
+
+    if ([page respondsToSelector:@selector(selectionTapGestureRecognizer)]) {
+        // get tap gesture recognizer 
+        UITapGestureRecognizer* tapGestureRecognizer = [page selectionTapGestureRecognizer];
+    
+        // remove target
+        [tapGestureRecognizer removeTarget:self action:@selector(tapGestureAction:)];
+    }
     
     if ([[self delegate] respondsToSelector:@selector(pageScrollView:didUnloadPage:atIndex:)]) {
         [[self delegate] pageScrollView:self didUnloadPage:page atIndex:index];

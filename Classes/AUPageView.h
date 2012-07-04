@@ -10,15 +10,12 @@
 #import <Foundation/Foundation.h>
 
 @protocol AUPageViewDelegate <NSObject>
-//Selection
+@optional
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+- (UITapGestureRecognizer *)selectionTapGestureRecognizer;
 @end
 
-@interface AUPageView : UIView <AUPageViewDelegate> {
-@private
-    BOOL _selected;
-}
-
+@interface AUPageView : UIView <AUPageViewDelegate>
 @property (nonatomic, assign) BOOL selected;
-
+@property (nonatomic, strong) UITapGestureRecognizer* tapGestureRecognizer;
 @end
