@@ -34,7 +34,6 @@ extern NSString* AUPageScrollViewTagKey;
     NSInteger _selectedPageIndex;
 
     UIEdgeInsets _loadInset;    
-    UIEdgeInsets _appearanceInset;
     
     NSInteger _indexOfFirstLoadedPage;
     NSInteger _indexOfLastLoadedPage;

@@ -697,7 +697,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     if ([self isDecelerating]) return;
 
     // calculate first visible page
-    UIEdgeInsets appearanceInset = UIEdgeInsetsZero; // UIEdgeInsetsMake(-5.0f, -5.0f, 5.0f, 5.0f);
+    UIEdgeInsets appearanceInset = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     NSRange range = [self visiblePagesRangeWithInset:appearanceInset];
     
     // take care of left side
