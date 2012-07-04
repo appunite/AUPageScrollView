@@ -694,7 +694,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 //        _lastPageIndex = _currentPageIndex;
 //    }
     
-    if ([self isDecelerating]) return;
+//    if ([self isDecelerating]) return;
 
     // calculate first visible page
     UIEdgeInsets appearanceInset = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
