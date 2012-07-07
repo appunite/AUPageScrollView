@@ -95,9 +95,9 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     // calculate range of visible pages
     NSRange range = [self visiblePagesRangeWithInset:loadInset];
     
-    if ((_indexOfFirstLoadedPage != range.location) || (_indexOfLastLoadedPage != range.location + range.length -1)) {
+    if ((_indexOfFirstLoadedPage != range.location) || (_indexOfLastLoadedPage != NSMaxRange(range) -1)) {
         // save flags
-        _indexOfFirstLoadedPage = range.location; _indexOfLastLoadedPage = range.location + range.length -1;
+        _indexOfFirstLoadedPage = range.location; _indexOfLastLoadedPage = NSMaxRange(range) -1;
     }
 
     // send pageDidAppear:/pageDidDisappera: notifications
@@ -685,45 +685,30 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)sendAppearanceDelegateMethodsIfNeeded {
-    
     _currentPageIndex = [self currentPageIndex];
     
-    // save ivar used to call pageScrollViewDidChangePage method
-//    if (!_startChangingPageIndex) {
-//        _startChangingPageIndex = YES;
-//        _lastPageIndex = _currentPageIndex;
-//    }
-    
-//    if ([self isDecelerating]) return;
-
     // calculate first visible page
     UIEdgeInsets appearanceInset = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     NSRange range = [self visiblePagesRangeWithInset:appearanceInset];
-    
-    // take care of left side
-    if ([self pageExistAtIndex:range.location]) {
-        if (_indexOfFirstVisiblePage > range.location) {
+
+    if (!NSEqualRanges(range, _visibleRange)) {
+        if (_visibleRange.location > range.location) {
             [self pageDidAppearAtIndex: range.location];
-            _indexOfFirstVisiblePage = range.location;
         }
-        else if (_indexOfFirstVisiblePage < range.location) {
-            [self pageDidDisappearAtIndex: _indexOfFirstVisiblePage];
-            _indexOfFirstVisiblePage = range.location;
+
+        if (_visibleRange.location < range.location) {
+            [self pageDidDisappearAtIndex: _visibleRange.location];
         }
-    }    
-    
-    // take care of right side
-    NSInteger lastVisiblePageIndex = range.location + range.length -1;
-    if ([self pageExistAtIndex:lastVisiblePageIndex]) {
-//    if ([self pageExistAtIndex:lastVisiblePageIndex] && (lastVisiblePageIndex != range.location || range.location == 0)) {
-        if (_indexOfLastVisiblePage < lastVisiblePageIndex) {
-            [self pageDidAppearAtIndex: lastVisiblePageIndex];
-            _indexOfLastVisiblePage = lastVisiblePageIndex;
+                
+        if (NSMaxRange(_visibleRange) < NSMaxRange(range)) {
+            [self pageDidAppearAtIndex: NSMaxRange(range) -1];
         }
-        else if (_indexOfLastVisiblePage > lastVisiblePageIndex) {
-            [self pageDidDisappearAtIndex: _indexOfLastVisiblePage];
-            _indexOfLastVisiblePage = lastVisiblePageIndex;
+
+        if (NSMaxRange(_visibleRange) > NSMaxRange(range)) {
+            [self pageDidDisappearAtIndex: NSMaxRange(_visibleRange) -1];
         }
+        
+        _visibleRange = range;
     }
 }
 
@@ -945,8 +930,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cleanFlags {
-    _currentPageIndex = _indexOfFirstVisiblePage = _indexOfLastVisiblePage = -1;
     _indexOfFirstLoadedPage = _indexOfLastLoadedPage = -1;
+    _visibleRange = NSMakeRange(0, 0);
     
     _startChangingPageIndex = NO;
     _lastPageIndex = -1;

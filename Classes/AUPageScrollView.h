@@ -38,10 +38,9 @@ extern NSString* AUPageScrollViewTagKey;
     NSInteger _indexOfFirstLoadedPage;
     NSInteger _indexOfLastLoadedPage;
 
-    NSInteger _indexOfFirstVisiblePage;
-    NSInteger _indexOfLastVisiblePage;
     NSInteger _currentPageIndex;
-
+    NSRange _visibleRange;
+    
     BOOL _startChangingPageIndex;
     NSInteger _lastPageIndex;
     
