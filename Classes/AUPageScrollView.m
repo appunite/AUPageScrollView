@@ -876,36 +876,34 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         NSAssert(view, @"Assert: Method pageScrollView:pageAtIndex: can't be nil.");
         
         // if got view from dataSorce
-        if (view != nil) {
-            [UIView setAnimationsEnabled:NO];
-            
-            // save flags
-            _isLoading = YES;
-            
-            // preventive, set frame
-            CGRect pageFrame = [self frameForPageAtIndex:index];
-            [view setFrame: pageFrame];
-            
-            // replace in array of pages
-            [_pages replaceObjectAtIndex:index withObject:view];
-            
-            // add subview
-            [self.intermediateView insertSubview:view atIndex:2];
-            
-            // send delegate
-            [self didLoadPage:view atIndex:index];
-            
-            // call appearance methods if needed
-            [self sendAppearanceDelegateMethodsIfNeeded];
-            
-            // save flags
-            _isLoading = NO;
+        [UIView setAnimationsEnabled:NO];
+        
+        // save flags
+        _isLoading = YES;
+        
+        // preventive, set frame
+        CGRect pageFrame = [self frameForPageAtIndex:index];
+        [view setFrame: pageFrame];
+        
+        // replace in array of pages
+        [_pages replaceObjectAtIndex:index withObject:view];
+        
+        // add subview
+        [self.intermediateView insertSubview:view atIndex:2];
+        
+        // send delegate
+        [self didLoadPage:view atIndex:index];
+        
+        // call appearance methods if needed
+        [self sendAppearanceDelegateMethodsIfNeeded];
+        
+        // save flags
+        _isLoading = NO;
 
-            [UIView setAnimationsEnabled:YES];    
+        [UIView setAnimationsEnabled:YES];    
 
-            // return loaded page
-            return view;
-        }
+        // return loaded page
+        return view;
     }
 
     // if view is loaded just ensure it is in proper location
