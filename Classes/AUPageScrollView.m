@@ -525,7 +525,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 - (NSInteger)indexOfPageContainsPoint:(CGPoint)point {
     
     NSInteger index = 0;
-    
+
+    // no negative values
+    point = CGPointMake(MAX(0, point.x), MAX(0, point.y));
+                        
     // if respond to selector then sum all pages to index
     if ([[self delegate] respondsToSelector:@selector(pageScrollView:pageSizeAtIndex:)]) {
         
@@ -779,7 +782,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         
         // if respond to selector return view from dataSource, else return loaded page
         if ([_dataSource respondsToSelector:@selector(selectionResponsibleViewInPageScrollView:forPageView:)]) {
-            selectionResponsibleView = [[self dataSource] selectionResponsibleViewInPageScrollView:self forPageView:page];
+            selectionResponsibleView = (AUPageView *)[[self dataSource] selectionResponsibleViewInPageScrollView:self forPageView:page];
         }
         
         // set tag, used in tapGestureRecognizer
