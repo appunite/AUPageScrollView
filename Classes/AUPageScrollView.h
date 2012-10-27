@@ -228,7 +228,7 @@ extern NSString* AUPageScrollViewTagKey;
 - (void)didSelectPageAtIndex:(NSInteger)index;
 - (void)didDeselectPageAtIndex:(NSInteger)index;
 
-- (void)willBeginDragging;
-- (void)didEndDragging;
+//- (void)willBeginDragging;
+//- (void)didEndDragging;
 @end
 

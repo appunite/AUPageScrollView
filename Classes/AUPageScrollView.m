@@ -501,19 +501,19 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     // calculate farthest point
     CGPoint contentOffset = CGPointZero;
     if (_scrollDirection == AUScrollHorizontalDirection) {
-        contentOffset = CGPointMake(floorf(self.contentOffset.x + self.bounds.size.width - inset.right) - 0.1f,
+        contentOffset = CGPointMake(floorf(self.contentOffset.x + self.bounds.size.width - inset.right),
                                     floorf(self.contentOffset.y - inset.bottom));
         
     } else {
         contentOffset = CGPointMake(floorf(self.contentOffset.x - inset.right), 
-                                    floorf(self.contentOffset.y + self.bounds.size.height - inset.bottom) - 0.1f);
+                                    floorf(self.contentOffset.y + self.bounds.size.height - inset.bottom));
     }
     
     // get working content size
     CGSize contentSize = [self scrollContentSize];
 
     // if calculated point is further than calculated point, return last page index
-    if ((contentOffset.x + inset.left > MAX(0, contentSize.width - CGRectGetWidth(self.bounds))) || (contentOffset.y + inset.top > MAX(0, contentSize.height - CGRectGetHeight(self.bounds)))) {
+    if ((contentOffset.x + inset.left > MAX(0, contentSize.width)) || (contentOffset.y + inset.top > MAX(0, contentSize.height))) {
         return _pageCount -1;
     }
     
@@ -525,7 +525,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 - (NSInteger)indexOfPageContainsPoint:(CGPoint)point {
     
     NSInteger index = 0;
-    
+
+    // no negative values
+    point = CGPointMake(MAX(0, point.x), MAX(0, point.y));
+                        
     // if respond to selector then sum all pages to index
     if ([[self delegate] respondsToSelector:@selector(pageScrollView:pageSizeAtIndex:)]) {
         
@@ -550,10 +553,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
             } else {
                 return MAX(0, i);
             }
-            
-            //            originX += size.width;
-            //            originY += size.height;
         }
+
+        // return last page
+        return _pageCount -1;
         
     } else { //if not respond then single page has frame of view
         if (_scrollDirection == AUScrollHorizontalDirection) {
@@ -688,7 +691,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     _currentPageIndex = [self currentPageIndex];
     
     // calculate first visible page
-    UIEdgeInsets appearanceInset = UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
+    UIEdgeInsets appearanceInset = UIEdgeInsetsZero; //UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f);
     NSRange range = [self visiblePagesRangeWithInset:appearanceInset];
 
     if (!NSEqualRanges(range, _visibleRange)) {
@@ -779,7 +782,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         
         // if respond to selector return view from dataSource, else return loaded page
         if ([_dataSource respondsToSelector:@selector(selectionResponsibleViewInPageScrollView:forPageView:)]) {
-            selectionResponsibleView = [[self dataSource] selectionResponsibleViewInPageScrollView:self forPageView:page];
+            selectionResponsibleView = (AUPageView *)[[self dataSource] selectionResponsibleViewInPageScrollView:self forPageView:page];
         }
         
         // set tag, used in tapGestureRecognizer
