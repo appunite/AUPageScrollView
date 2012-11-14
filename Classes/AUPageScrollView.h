@@ -162,7 +162,7 @@ extern NSString* AUPageScrollViewTagKey;
 - (CGSize)pageScrollView:(AUPageScrollView*)pageScrollView pageSizeAtIndex:(NSInteger)index;
 
 - (void)pageScrollViewDidChangePage:(AUPageScrollView*)pageScrollView previousPageIndex:(NSInteger)index;
-- (void)pageScrollView:(AUPageScrollView*)pageScrollView didSelectPageAtIndex:(NSInteger)index;
+- (void)pageScrollView:(AUPageScrollView*)pageScrollView didSelectPageAtIndex:(NSInteger)index gestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer;
 
 /*
  * Methods called while reloadData.
@@ -225,7 +225,7 @@ extern NSString* AUPageScrollViewTagKey;
 - (void)didLoadPage:(UIView*)page atIndex:(NSInteger)index;
 - (void)didUnloadPage:(UIView*)page atIndex:(NSInteger)index;
 
-- (void)didSelectPageAtIndex:(NSInteger)index;
+- (void)didSelectPageAtIndex:(NSInteger)index gestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer;
 - (void)didDeselectPageAtIndex:(NSInteger)index;
 
 //- (void)willBeginDragging;

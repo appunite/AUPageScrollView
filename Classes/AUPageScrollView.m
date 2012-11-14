@@ -825,11 +825,11 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didSelectPageAtIndex:(NSInteger)index {
+- (void)didSelectPageAtIndex:(NSInteger)index gestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer {
     [self didDeselectPageAtIndex:_selectedPageIndex];
     
-    if ([[self delegate] respondsToSelector:@selector(pageScrollView:didSelectPageAtIndex:)]) {
-        [[self delegate] pageScrollView:self didSelectPageAtIndex:index];
+    if ([[self delegate] respondsToSelector:@selector(pageScrollView:didSelectPageAtIndex:gestureRecognizer:)]) {
+        [[self delegate] pageScrollView:self didSelectPageAtIndex:index gestureRecognizer:gestureRecognizer];
     }
     
     id page = [self pageAtIndex:index];
@@ -926,7 +926,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tapGestureAction:(UITapGestureRecognizer*)gestureRecognizer {
     NSInteger index = [gestureRecognizer.view tag];
-    [self didSelectPageAtIndex:index];
+    [self didSelectPageAtIndex:index gestureRecognizer:gestureRecognizer];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
