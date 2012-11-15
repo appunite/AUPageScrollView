@@ -61,7 +61,7 @@
     
     // calculate rect of contentView
     CGRect contentRect = CGRectMake(0.0f, 0.0f, MAX(contentSize.width, CGRectGetWidth(self.bounds)), MAX(contentSize.height, CGRectGetHeight(self.bounds)));
-    _intermediateView.frame = contentRect;
+    _intermediateView.frame = CGRectIntegral(contentRect);
     
     // make view visible
     [self bringSubviewToFront:_intermediateView];

@@ -104,10 +104,11 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     [self sendAppearanceDelegateMethodsIfNeeded];
     
     // send didChangePage: notification
-    if (_currentPageIndex != _lastPageIndex) {
-        [self pageScrollViewDidChangePage:_lastPageIndex]; 
-        _lastPageIndex = _currentPageIndex;
+    if (_currentPageIndex != _lastPageIndex && _lastPageIndex != -1) {
+        [self pageScrollViewDidChangePage:_lastPageIndex];
     }
+
+    _lastPageIndex = _currentPageIndex;
 }
 
 #pragma mark -
