@@ -683,7 +683,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     CGPoint origin = [self originForPageAtIndex:index];
     CGSize size = [self pageSizeAtIndex:index];
     // create rect
-    return CGRectMake(origin.x, origin.y, size.width, size.height);
+    return CGRectIntegral(CGRectMake(origin.x, origin.y, size.width, size.height));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -817,6 +817,9 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     
         // remove target
         [tapGestureRecognizer removeTarget:self action:@selector(tapGestureAction:)];
+        
+        // remove gesture from view
+        [[tapGestureRecognizer view] removeGestureRecognizer:tapGestureRecognizer];
     }
     
     if ([[self delegate] respondsToSelector:@selector(pageScrollView:didUnloadPage:atIndex:)]) {
