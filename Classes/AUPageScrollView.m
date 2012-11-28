@@ -544,14 +544,14 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
             size = [[self delegate] pageScrollView:self pageSizeAtIndex:i];
             
             if (_scrollDirection == AUScrollHorizontalDirection) {
-                rect = CGRectMake(originX, 0.0f, size.width + _spacing.width * 0.5f , size.height);
+                rect = CGRectMake(originX, 0.0f, size.width + _spacing.width, size.height);
             } else {
-                rect = CGRectMake(0.0f, originY, size.width, size.height + _spacing.height * 0.5f);
+                rect = CGRectMake(0.0f, originY, size.width, size.height + _spacing.height);
             }
             
             if (!CGRectContainsPoint(rect, point)) {
-                originX += size.width + _spacing.width * 0.5f;
-                originY += size.height + _spacing.height * 0.5f;
+                originX += size.width + _spacing.width;
+                originY += size.height + _spacing.height;
             } else {
                 return MAX(0, i);
             }
