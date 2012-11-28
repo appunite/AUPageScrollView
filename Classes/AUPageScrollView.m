@@ -50,6 +50,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     _scrollDirection = AUScrollHorizontalDirection;
     _selectedPageIndex = -1;
     _isLoading = NO;
+    _spacing = CGSizeZero;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -543,14 +544,14 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
             size = [[self delegate] pageScrollView:self pageSizeAtIndex:i];
             
             if (_scrollDirection == AUScrollHorizontalDirection) {
-                rect = CGRectMake(originX, 0.0f, size.width, size.height);
+                rect = CGRectMake(originX, 0.0f, size.width + _spacing.width * 0.5f , size.height);
             } else {
-                rect = CGRectMake(0.0f, originY, size.width, size.height);
+                rect = CGRectMake(0.0f, originY, size.width, size.height + _spacing.height * 0.5f);
             }
             
             if (!CGRectContainsPoint(rect, point)) {
-                originX += size.width;
-                originY += size.height;
+                originX += size.width + _spacing.width * 0.5f;
+                originY += size.height + _spacing.height * 0.5f;
             } else {
                 return MAX(0, i);
             }
@@ -561,11 +562,11 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         
     } else { //if not respond then single page has frame of view
         if (_scrollDirection == AUScrollHorizontalDirection) {
-            CGFloat contentOffset = point.x + FLT_EPSILON;
-            index = floorf((contentOffset)/ self.bounds.size.width);
+            CGFloat contentOffset = point.x + _spacing.width + FLT_EPSILON;
+            index = floorf((contentOffset) / self.bounds.size.width);
         } else {
-            CGFloat contentOffset = point.y + FLT_EPSILON;
-            index = floorf((contentOffset)/ self.bounds.size.height);
+            CGFloat contentOffset = point.y + _spacing.height + FLT_EPSILON;
+            index = floorf((contentOffset) / self.bounds.size.height);
         }
     }
     
@@ -618,21 +619,21 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         
         for (NSInteger i=0; i<_pageCount; i++) {
             CGSize size = [[self delegate] pageScrollView:self pageSizeAtIndex:i];
-            width += size.width;
-            height += size.height;
+            width += size.width + _spacing.width;
+            height += size.height + _spacing.height;
         }
         
         if (_scrollDirection == AUScrollHorizontalDirection) {
-            return CGSizeMake(width, 0.0f);
+            return CGSizeMake(width - _spacing.width, 0.0f);
         } else {
-            return CGSizeMake(0.0f, height);
+            return CGSizeMake(0.0f, height - _spacing.height);
         }
         
     } else { //if not respond then single page has frame of view
         if (_scrollDirection == AUScrollHorizontalDirection) {        
-            return CGSizeMake(CGRectGetWidth(self.bounds)* _pageCount, 0.0f);
+            return CGSizeMake(((CGRectGetWidth(self.bounds) + _spacing.width) * _pageCount) - _spacing.width, 0.0f);
         } else {
-            return CGSizeMake(0.0f, CGRectGetHeight(self.bounds)* _pageCount);
+            return CGSizeMake(0.0f, ((CGRectGetHeight(self.bounds) + _spacing.width) * _pageCount) - _spacing.height);
         }    
     }
 }
@@ -653,16 +654,16 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         }
         
         if (_scrollDirection == AUScrollHorizontalDirection) {
-            return CGPointMake(originX, 0.0f);
+            return CGPointMake(originX + _spacing.width * index, 0.0f);
         } else {
-            return CGPointMake(0.0f, originY);
+            return CGPointMake(0.0f, originY + _spacing.height * index);
         }
         
     } else { //if not respond then single page has frame of view
         if (_scrollDirection == AUScrollHorizontalDirection) {
-            return CGPointMake(CGRectGetWidth(self.bounds)* index, 0.0f);
+            return CGPointMake((CGRectGetWidth(self.bounds) + _spacing.width) * index, 0.0f);
         } else {
-            return CGPointMake(0.0f, CGRectGetHeight(self.bounds)* index);
+            return CGPointMake(0.0f, (CGRectGetHeight(self.bounds) + _spacing.height) * index);
         }
     }
 }

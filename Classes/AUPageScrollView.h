@@ -58,6 +58,7 @@ extern NSString* AUPageScrollViewTagKey;
  */
 @property (nonatomic, strong, readonly) NSMutableArray* pages;
 
+@property (nonatomic, assign) CGSize spacing;
 /*
  * Redefine delegate.
  */
