@@ -38,6 +38,10 @@
 - (void)setDataSource:(id<AUReusablePageScrollViewDataSource>)dataSource;
 - (id<AUReusablePageScrollViewDataSource>)dataSource;
 
+/*
+ * Return set of pages to recycle.
+ */
+- (NSMutableSet *)recycledPages;
 @end
 
 
@@ -58,6 +62,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface AUReusablePageScrollView (Delegates)
-- (void) didRecyclePage:(UIView*)page;
-- (void) didDequeuePage:(UIView*)page;
+- (void)didRecyclePage:(UIView*)page;
+- (void)didDequeuePage:(UIView*)page;
 @end

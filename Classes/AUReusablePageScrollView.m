@@ -9,7 +9,6 @@
 
 @interface AUReusablePageScrollView (Private)
 - (void)recyclePage:(UIView *)page;
-- (NSMutableSet *)recycledPages;
 @end
 
 @implementation AUReusablePageScrollView
@@ -57,9 +56,10 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView *)dequeueReusablePage {
-    UIView *result = [[self recycledPages] anyObject];
+    NSMutableSet* set = [self recycledPages];
+    UIView *result = [set anyObject];
     if (result) {
-        [[self recycledPages] removeObject:result];
+        [set removeObject:result];
         [self didDequeuePage:result];
     }
     return result;
@@ -102,7 +102,7 @@
 @implementation AUReusablePageScrollView (Private)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)recyclePage:(UIView *)page {
+- (void)recyclePage:(UIView *)page {    
     // recycle page
     [[self recycledPages] addObject:page];
     // remove from super view
