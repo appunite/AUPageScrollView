@@ -697,7 +697,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     NSRange range = [self visiblePagesRangeWithInset:appearanceInset];
 
     if (!NSEqualRanges(range, _visibleRange)) {
-        if (_visibleRange.location >= range.location) {
+        if (_visibleRange.location > range.location) {
             [self pageDidAppearAtIndex: range.location];
         }
 
