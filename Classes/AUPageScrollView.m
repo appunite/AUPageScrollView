@@ -902,8 +902,15 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         // send delegate
         [self didLoadPage:view atIndex:index];
         
+        // if just one page just call pageDidAppearAtIndex:
+        if (_pageCount == 1) {
+            [self pageDidAppearAtIndex:0];
+        }
+        
         // call appearance methods if needed
-        [self sendAppearanceDelegateMethodsIfNeeded];
+        else {
+            [self sendAppearanceDelegateMethodsIfNeeded];
+        }
         
         // save flags
         _isLoading = NO;
