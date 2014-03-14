@@ -706,11 +706,11 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         }
                 
         if (NSMaxRange(_visibleRange) < NSMaxRange(range)) {
-            [self pageDidAppearAtIndex: NSMaxRange(range) -1];
+            [self pageDidAppearAtIndex: NSMaxRange(range) -2];
         }
 
         if (NSMaxRange(_visibleRange) > NSMaxRange(range)) {
-            [self pageDidDisappearAtIndex: NSMaxRange(_visibleRange) -1];
+            [self pageDidDisappearAtIndex: NSMaxRange(_visibleRange) -2];
         }
         
         _visibleRange = range;
