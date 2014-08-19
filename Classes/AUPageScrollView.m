@@ -421,6 +421,12 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
     // layout loaded subviews
     NSRange range = _rangeBeforeRotation;
+    
+    // set up content offset
+    CGRect frame = [self frameForPageAtIndex:range.location];
+    
+    [self setContentOffset:frame.origin animated:NO];
+    
     for (NSInteger i=range.location; i<=range.length + range.location - 1; i++) {
 
         // get page from dataSource
@@ -430,15 +436,10 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
         CGRect pageFrame = [self frameForPageAtIndex:i];
         [view setFrame: pageFrame];
     }
-
-    // set up content offset
-    CGRect frame = [self frameForPageAtIndex:range.location];
-    self.contentOffset = frame.origin;
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation {    
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation {
     // clear rotation flag
     _rotationInProgress = NO;
 }
@@ -491,8 +492,8 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)firstVisiblePageIndexWithInset:(UIEdgeInsets)inset {
-    CGPoint contentOffset = CGPointMake(ceilf(self.contentOffset.x + inset.left + FLT_EPSILON), 
-                                        ceilf(self.contentOffset.y + inset.top + FLT_EPSILON));    
+    CGPoint contentOffset = CGPointMake(ceilf(self.contentOffset.x + inset.left + 2.f),
+                                        ceilf(self.contentOffset.y + inset.top + 2.f));
     return [self indexOfPageContainsPoint:contentOffset];
 }
 
@@ -604,7 +605,7 @@ NSString* AUPageScrollViewTagKey = @"kAUPageScrollViewTagKey";
     // find first and last visible page index
     NSInteger indexOfFirstVisiblePage = [self firstVisiblePageIndexWithInset:inset];
     NSInteger indexOfLastVisiblePage = [self lastVisiblePageIndexWithInset:inset];
-    
+        
     return NSMakeRange(MAX(0, indexOfFirstVisiblePage), MAX(0, indexOfLastVisiblePage - indexOfFirstVisiblePage + 1));
 }
 
